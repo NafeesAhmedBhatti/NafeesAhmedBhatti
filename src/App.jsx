@@ -1,6 +1,8 @@
 import React, { useState, useRef, useEffect, useCallback } from 'react';
 import mammoth from 'mammoth';
 
+// SmartStudy AI v2 — model: drytis/kimi-k2.5
+
 // ─── Constants ───────────────────────────────────────────────
 const COLORS = {
   bg: '#0D1117',
