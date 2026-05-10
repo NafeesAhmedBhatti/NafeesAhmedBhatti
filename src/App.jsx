@@ -16,22 +16,29 @@ import {
 import { AreaChart, Area, BarChart, Bar, PieChart, Pie, Cell, ResponsiveContainer, XAxis, YAxis, Tooltip, CartesianGrid } from 'recharts';
 
 // ═══════════════════════════════════════════════════════════════
-// THEME
+// THEME — Cyber Sakura
 // ═══════════════════════════════════════════════════════════════
 const T = {
-  bg: '#07070F', bg2: '#0B0B16', bg3: '#0F0F1A',
-  sidebar: '#0A0A14', sidebarHover: '#0E0E1C',
-  surface: '#111120', surface2: '#161630', surface3: '#1C1C3A',
-  border: '#1E1E3A', borderLight: '#2A2A50',
-  text: '#E8E8F0', text2: '#9898B8', text3: '#5A5A78',
-  indigo: '#6366F1', indigoHover: '#5558E6', indigoSoft: 'rgba(99,102,241,0.10)', indigoGlow: 'rgba(99,102,241,0.25)',
-  purple: '#8B5CF6', purpleSoft: 'rgba(139,92,246,0.10)',
-  cyan: '#06B6D4', cyanSoft: 'rgba(6,182,212,0.10)',
-  green: '#10B981', greenSoft: 'rgba(16,185,129,0.10)',
-  orange: '#F59E0B', orangeSoft: 'rgba(245,158,11,0.10)',
-  red: '#EF4444', redSoft: 'rgba(239,68,68,0.10)',
-  pink: '#EC4899', pinkSoft: 'rgba(236,72,153,0.10)',
-  blue: '#3B82F6', blueSoft: 'rgba(59,130,246,0.10)',
+  bg: '#0D0A14', bg2: '#120E1C', bg3: '#171224',
+  sidebar: '#0F0B18', sidebarHover: '#14102A',
+  surface: '#18132A', surface2: '#1E1836', surface3: '#2A2348',
+  border: '#2A2348', borderLight: '#342C56',
+  text: '#F5D0FE', text2: '#B07CC8', text3: '#6B4380',
+  sakura: '#D946EF', sakuraHover: '#C026D3', sakuraSoft: 'rgba(217,70,239,0.10)', sakuraGlow: 'rgba(217,70,239,0.25)',
+  lavender: '#F0ABFC', lavenderSoft: 'rgba(240,171,252,0.10)',
+  rose: '#F472B6', roseSoft: 'rgba(244,114,182,0.10)',
+  fuchsia: '#E879F9', fuchsiaSoft: 'rgba(232,121,249,0.10)',
+  cyan: '#67E8F9', cyanSoft: 'rgba(103,232,249,0.10)',
+  violet: '#A78BFA', violetSoft: 'rgba(167,139,250,0.10)',
+  amber: '#FCD34D', amberSoft: 'rgba(252,211,77,0.10)',
+  green: '#4ADE80', greenSoft: 'rgba(74,222,128,0.10)',
+  red: '#FB7185', redSoft: 'rgba(251,113,133,0.10)',
+  // Legacy aliases for compatibility
+  indigo: '#D946EF', indigoHover: '#C026D3', indigoSoft: 'rgba(217,70,239,0.10)', indigoGlow: 'rgba(217,70,239,0.25)',
+  purple: '#A78BFA', purpleSoft: 'rgba(167,139,250,0.10)',
+  orange: '#FCD34D', orangeSoft: 'rgba(252,211,77,0.10)',
+  pink: '#F472B6', pinkSoft: 'rgba(244,114,182,0.10)',
+  blue: '#67E8F9', blueSoft: 'rgba(103,232,249,0.10)',
 };
 
 const Ic = (Icon, s = 18, color = T.text2) => <Icon size={s} color={color} strokeWidth={1.7} />;
@@ -49,11 +56,11 @@ const CSS = `
 @keyframes flipIn{from{transform:rotateY(90deg);opacity:0}to{transform:rotateY(0);opacity:1}}
 @keyframes progress{from{width:0}to{width:var(--pw)}}
 @keyframes fade-in{from{opacity:0}to{opacity:1}}
-.shimmer{background:linear-gradient(90deg,transparent,rgba(99,102,241,0.08),transparent);background-size:200% 100%;animation:shimmer 2s infinite}
+.shimmer{background:linear-gradient(90deg,transparent,rgba(217,70,239,0.06),transparent);background-size:200% 100%;animation:shimmer 2s infinite}
 .glow-btn{position:relative;overflow:hidden;transition:all .3s cubic-bezier(.4,0,.2,1)}
-.glow-btn::before{content:'';position:absolute;inset:-2px;border-radius:inherit;background:linear-gradient(135deg,${T.indigo},${T.purple},${T.cyan});opacity:0;transition:opacity .3s;z-index:-1;filter:blur(8px)}
+.glow-btn::before{content:'';position:absolute;inset:-2px;border-radius:inherit;background:linear-gradient(135deg,#D946EF,#A78BFA,#67E8F9);opacity:0;transition:opacity .3s;z-index:-1;filter:blur(8px)}
 .glow-btn:hover::before{opacity:.6}
-.glow-btn:hover{transform:translateY(-1px);box-shadow:0 8px 32px rgba(99,102,241,0.25)}
+.glow-btn:hover{transform:translateY(-1px);box-shadow:0 8px 32px rgba(217,70,239,0.3),0 0 60px rgba(167,139,250,0.1)}
 .glow-btn:active{transform:translateY(0) scale(.98)}
 `;
 
@@ -255,13 +262,13 @@ function Landing({ onEnter }) {
     <div style={{ minHeight: '100vh', background: T.bg }}>
       {/* Background orbs */}
       <div style={{ position: 'fixed', inset: 0, pointerEvents: 'none', overflow: 'hidden' }}>
-        <div style={{ position: 'absolute', top: '-20%', left: '15%', width: 600, height: 600, borderRadius: '50%', background: `radial-gradient(circle, rgba(99,102,241,0.08), transparent 70%)`, filter: 'blur(80px)' }} />
-        <div style={{ position: 'absolute', bottom: '-15%', right: '10%', width: 500, height: 500, borderRadius: '50%', background: `radial-gradient(circle, rgba(139,92,246,0.06), transparent 70%)`, filter: 'blur(80px)' }} />
-        <div style={{ position: 'absolute', top: '40%', left: '60%', width: 300, height: 300, borderRadius: '50%', background: `radial-gradient(circle, rgba(6,182,212,0.05), transparent 70%)`, filter: 'blur(60px)' }} />
+        <div style={{ position: 'absolute', top: '-20%', left: '15%', width: 600, height: 600, borderRadius: '50%', background: `radial-gradient(circle, rgba(217,70,239,0.08), transparent 70%)`, filter: 'blur(80px)' }} />
+        <div style={{ position: 'absolute', bottom: '-15%', right: '10%', width: 500, height: 500, borderRadius: '50%', background: `radial-gradient(circle, rgba(167,139,250,0.06), transparent 70%)`, filter: 'blur(80px)' }} />
+        <div style={{ position: 'absolute', top: '40%', left: '60%', width: 300, height: 300, borderRadius: '50%', background: `radial-gradient(circle, rgba(103,232,249,0.05), transparent 70%)`, filter: 'blur(60px)' }} />
       </div>
 
       {/* Navbar */}
-      <nav style={{ position: 'fixed', top: 0, left: 0, right: 0, zIndex: 100, height: 64, display: 'flex', alignItems: 'center', justifyContent: 'space-between', padding: '0 40px', background: 'rgba(7,7,15,0.8)', backdropFilter: 'blur(20px) saturate(1.5)', borderBottom: `1px solid ${T.border}` }}>
+      <nav style={{ position: 'fixed', top: 0, left: 0, right: 0, zIndex: 100, height: 64, display: 'flex', alignItems: 'center', justifyContent: 'space-between', padding: '0 40px', background: 'rgba(13,10,20,0.8)', backdropFilter: 'blur(20px) saturate(1.5)', borderBottom: `1px solid ${T.border}` }}>
         <div style={{ display: 'flex', alignItems: 'center', gap: 10 }}>
           <div style={{ width: 32, height: 32, borderRadius: 10, background: `linear-gradient(135deg, ${T.indigo}, ${T.cyan})`, display: 'flex', alignItems: 'center', justifyContent: 'center', boxShadow: `0 0 24px ${T.indigo}40` }}>{Ic(Brain, 16, '#fff')}</div>
           <span style={{ fontWeight: 700, fontSize: 16, letterSpacing: '-0.5px' }}>SmartStudy<span style={{ color: T.text3, fontWeight: 400 }}> AI</span></span>
@@ -968,7 +975,7 @@ export default function App() {
       {/* Main content */}
       <div style={{ flex: 1, display: 'flex', flexDirection: 'column', minWidth: 0 }}>
         {/* Top bar */}
-        <header style={{ height: 64, display: 'flex', alignItems: 'center', justifyContent: 'space-between', padding: '0 24px', borderBottom: `1px solid ${T.border}`, flexShrink: 0, background: 'rgba(7,7,15,0.6)', backdropFilter: 'blur(12px)' }}>
+        <header style={{ height: 64, display: 'flex', alignItems: 'center', justifyContent: 'space-between', padding: '0 24px', borderBottom: `1px solid ${T.border}`, flexShrink: 0, background: 'rgba(13,10,20,0.6)', backdropFilter: 'blur(12px)' }}>
           <div style={{ display: 'flex', alignItems: 'center', gap: 12 }}>
             <h2 style={{ fontSize: 16, fontWeight: 700, letterSpacing: '-0.3px' }}>{SIDEBAR_ITEMS.find(i => i.id === page)?.label || 'Dashboard'}</h2>
           </div>
