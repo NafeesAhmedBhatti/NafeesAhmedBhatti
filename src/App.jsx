@@ -16,29 +16,29 @@ import {
 import { AreaChart, Area, BarChart, Bar, PieChart, Pie, Cell, ResponsiveContainer, XAxis, YAxis, Tooltip, CartesianGrid } from 'recharts';
 
 // ═══════════════════════════════════════════════════════════════
-// THEME — Mint Green + Sky Blue (Light)
+// THEME — Soft Pastel Mint Green (Reference Match)
 // ═══════════════════════════════════════════════════════════════
 const T = {
-  bg: '#ECFEFF', bg2: '#F0FDFA', bg3: '#F7FDFB',
-  sidebar: '#F0FDFA', sidebarHover: '#E6FAF7',
-  surface: '#FFFFFF', surface2: '#F5FFFE', surface3: '#E8F8F5',
-  border: '#C8F0E8', borderLight: '#D5F2EC',
-  text: '#164E63', text2: '#3D7A8A', text3: '#7CB5C2',
-  sky: '#7DD3FC', skyHover: '#38BDF8', skySoft: 'rgba(125,211,252,0.12)', skyGlow: 'rgba(125,211,252,0.30)',
-  mint: '#99F6E4', mintSoft: 'rgba(153,246,228,0.15)',
-  teal: '#2DD4BF', tealSoft: 'rgba(45,212,191,0.12)',
-  emerald: '#34D399', emeraldSoft: 'rgba(52,211,153,0.12)',
-  skyblue: '#38BDF8', skyblueSoft: 'rgba(56,189,248,0.12)',
+  bg: '#D7F3E1', bg2: '#E6FCEF', bg3: '#EAF9F0',
+  sidebar: '#32C971', sidebarHover: '#2AB862',
+  surface: '#FFFFFF', surface2: '#F5F3F4', surface3: '#F0EEEF',
+  border: '#E5E7EB', borderLight: '#ECEEF0',
+  text: '#111111', text2: '#6B7280', text3: '#9CA3AF',
+  mint: '#32C971', mintHover: '#2AB862', mintSoft: 'rgba(50,201,113,0.12)', mintGlow: 'rgba(57,193,108,0.25)',
+  lightMint: '#A9F5C6', lightMintSoft: 'rgba(169,245,198,0.20)',
+  paleMint: '#E6FCEF',
+  emerald: '#39C16C', emeraldSoft: 'rgba(57,193,108,0.12)',
+  deepGreen: '#0E3D27',
+  sky: '#7DD3FC', skySoft: 'rgba(125,211,252,0.12)',
   amber: '#FBBF24', amberSoft: 'rgba(251,191,36,0.12)',
   rose: '#FB7185', roseSoft: 'rgba(251,113,133,0.12)',
   violet: '#A78BFA', violetSoft: 'rgba(167,139,250,0.12)',
-  deep: '#164E63',
-  // Aliases for compatibility
-  indigo: '#0EA5E9', indigoHover: '#0284C7', indigoSoft: 'rgba(14,165,233,0.10)', indigoGlow: 'rgba(14,165,233,0.25)',
-  purple: '#8B5CF6', purpleSoft: 'rgba(139,92,246,0.10)',
-  cyan: '#06B6D4', cyanSoft: 'rgba(6,182,212,0.10)',
+  // Compatibility aliases
+  indigo: '#32C971', indigoHover: '#2AB862', indigoSoft: 'rgba(50,201,113,0.12)', indigoGlow: 'rgba(57,193,108,0.25)',
+  purple: '#A78BFA', purpleSoft: 'rgba(167,139,250,0.12)',
+  cyan: '#39C16C', cyanSoft: 'rgba(57,193,108,0.12)',
   green: '#10B981', greenSoft: 'rgba(16,185,129,0.12)',
-  orange: '#F59E0B', orangeSoft: 'rgba(245,158,11,0.12)',
+  orange: '#FBBF24', orangeSoft: 'rgba(251,191,36,0.12)',
   red: '#EF4444', redSoft: 'rgba(239,68,68,0.10)',
   pink: '#EC4899', pinkSoft: 'rgba(236,72,153,0.10)',
   blue: '#0EA5E9', blueSoft: 'rgba(14,165,233,0.10)',
@@ -59,11 +59,11 @@ const CSS = `
 @keyframes flipIn{from{transform:rotateY(90deg);opacity:0}to{transform:rotateY(0);opacity:1}}
 @keyframes progress{from{width:0}to{width:var(--pw)}}
 @keyframes fade-in{from{opacity:0}to{opacity:1}}
-.shimmer{background:linear-gradient(90deg,transparent,rgba(14,165,233,0.06),transparent);background-size:200% 100%;animation:shimmer 2s infinite}
+.shimmer{background:linear-gradient(90deg,transparent,rgba(50,201,113,0.06),transparent);background-size:200% 100%;animation:shimmer 2s infinite}
 .glow-btn{position:relative;overflow:hidden;transition:all .3s cubic-bezier(.4,0,.2,1)}
-.glow-btn::before{content:'';position:absolute;inset:-2px;border-radius:inherit;background:linear-gradient(135deg,#0EA5E9,#2DD4BF,#99F6E4);opacity:0;transition:opacity .3s;z-index:-1;filter:blur(8px)}
-.glow-btn:hover::before{opacity:.6}
-.glow-btn:hover{transform:translateY(-1px);box-shadow:0 8px 32px rgba(14,165,233,0.2),0 0 60px rgba(45,212,191,0.1)}
+.glow-btn::before{content:'';position:absolute;inset:-2px;border-radius:inherit;background:linear-gradient(135deg,#32C971,#A9F5C6,#7DD3FC);opacity:0;transition:opacity .3s;z-index:-1;filter:blur(8px)}
+.glow-btn:hover::before{opacity:.5}
+.glow-btn:hover{transform:translateY(-2px);box-shadow:0 8px 28px rgba(57,193,108,0.20)}
 .glow-btn:active{transform:translateY(0) scale(.98)}
 `;
 
@@ -171,8 +171,8 @@ const callAI = async (sys, hist = []) => {
 // -- Stat Card --
 function StatCard({ icon: Icon, label, value, sub, color, trend }) {
   return (
-    <div style={{ padding: 22, borderRadius: 16, background: T.surface, border: `1px solid ${T.border}`, position: 'relative', overflow: 'hidden', transition: 'all .3s' }}>
-      <div style={{ position: 'absolute', top: 0, right: 0, width: 100, height: 100, borderRadius: '50%', background: `${color}06`, filter: 'blur(40px)', pointerEvents: 'none' }} />
+    <div style={{ padding: 22, borderRadius: 16, background: T.surface, border: `1px solid ${T.border}`, position: 'relative', overflow: 'hidden', transition: 'all .3s', boxShadow: '0 1px 4px rgba(0,0,0,0.04)' }}>
+      <div style={{ position: 'absolute', top: 0, right: 0, width: 100, height: 100, borderRadius: '50%', background: `${color}08`, filter: 'blur(40px)', pointerEvents: 'none' }} />
       <div style={{ display: 'flex', alignItems: 'flex-start', justifyContent: 'space-between', marginBottom: 14 }}>
         <div style={{ width: 40, height: 40, borderRadius: 12, background: `${color}12`, display: 'flex', alignItems: 'center', justifyContent: 'center' }}>{Ic(Icon, 20, color)}</div>
         {trend && <div style={{ display: 'flex', alignItems: 'center', gap: 4, fontSize: 11, color: T.green, background: T.greenSoft, padding: '3px 8px', borderRadius: 6 }}>{Ic(TrendingUp, 12, T.green)}{trend}</div>}
@@ -265,13 +265,13 @@ function Landing({ onEnter }) {
     <div style={{ minHeight: '100vh', background: T.bg }}>
       {/* Background orbs */}
       <div style={{ position: 'fixed', inset: 0, pointerEvents: 'none', overflow: 'hidden' }}>
-        <div style={{ position: 'absolute', top: '-20%', left: '15%', width: 600, height: 600, borderRadius: '50%', background: `radial-gradient(circle, rgba(14,165,233,0.06), transparent 70%)`, filter: 'blur(80px)' }} />
-        <div style={{ position: 'absolute', bottom: '-15%', right: '10%', width: 500, height: 500, borderRadius: '50%', background: `radial-gradient(circle, rgba(45,212,191,0.06), transparent 70%)`, filter: 'blur(80px)' }} />
-        <div style={{ position: 'absolute', top: '40%', left: '60%', width: 300, height: 300, borderRadius: '50%', background: `radial-gradient(circle, rgba(153,246,228,0.06), transparent 70%)`, filter: 'blur(60px)' }} />
+        <div style={{ position: 'absolute', top: '-20%', left: '15%', width: 600, height: 600, borderRadius: '50%', background: `radial-gradient(circle, rgba(50,201,113,0.06), transparent 70%)`, filter: 'blur(80px)' }} />
+        <div style={{ position: 'absolute', bottom: '-15%', right: '10%', width: 500, height: 500, borderRadius: '50%', background: `radial-gradient(circle, rgba(169,245,198,0.08), transparent 70%)`, filter: 'blur(80px)' }} />
+        <div style={{ position: 'absolute', top: '40%', left: '60%', width: 300, height: 300, borderRadius: '50%', background: `radial-gradient(circle, rgba(125,211,252,0.05), transparent 70%)`, filter: 'blur(60px)' }} />
       </div>
 
       {/* Navbar */}
-      <nav style={{ position: 'fixed', top: 0, left: 0, right: 0, zIndex: 100, height: 64, display: 'flex', alignItems: 'center', justifyContent: 'space-between', padding: '0 40px', background: 'rgba(236,254,255,0.85)', backdropFilter: 'blur(20px) saturate(1.5)', borderBottom: `1px solid ${T.border}` }}>
+      <nav style={{ position: 'fixed', top: 0, left: 0, right: 0, zIndex: 100, height: 64, display: 'flex', alignItems: 'center', justifyContent: 'space-between', padding: '0 40px', background: 'rgba(255,255,255,0.92)', backdropFilter: 'blur(20px) saturate(1.5)', borderBottom: `1px solid ${T.border}`, boxShadow: '0 1px 3px rgba(0,0,0,0.04)' }}>
         <div style={{ display: 'flex', alignItems: 'center', gap: 10 }}>
           <div style={{ width: 32, height: 32, borderRadius: 10, background: `linear-gradient(135deg, ${T.indigo}, ${T.cyan})`, display: 'flex', alignItems: 'center', justifyContent: 'center', boxShadow: `0 0 24px ${T.indigo}40` }}>{Ic(Brain, 16, '#fff')}</div>
           <span style={{ fontWeight: 700, fontSize: 16, letterSpacing: '-0.5px' }}>SmartStudy<span style={{ color: T.text3, fontWeight: 400 }}> AI</span></span>
@@ -568,7 +568,7 @@ function AIChatPage() {
 
       {/* Upload modal */}
       {showUpload && (
-        <div style={{ position: 'fixed', inset: 0, zIndex: 300, display: 'flex', alignItems: 'center', justifyContent: 'center', background: 'rgba(22,78,99,0.15)', backdropFilter: 'blur(8px)' }} onClick={e => { if (e.target === e.currentTarget) setShowUpload(false); }}>
+        <div style={{ position: 'fixed', inset: 0, zIndex: 300, display: 'flex', alignItems: 'center', justifyContent: 'center', background: 'rgba(14,61,39,0.1)', backdropFilter: 'blur(8px)' }} onClick={e => { if (e.target === e.currentTarget) setShowUpload(false); }}>
           <div style={{ width: '100%', maxWidth: 440, margin: '0 24px', borderRadius: 18, background: T.surface, border: `1px solid ${T.border}`, animation: 'slide-up .3s ease' }}>
             <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', padding: '16px 20px', borderBottom: `1px solid ${T.border}` }}>
               <h3 style={{ fontSize: 15, fontWeight: 600 }}>Upload Notes</h3>
@@ -942,9 +942,9 @@ export default function App() {
       {/* Sidebar */}
       <aside style={{ width: collapsed ? 68 : 232, background: T.sidebar, borderRight: `1px solid ${T.border}`, display: 'flex', flexDirection: 'column', flexShrink: 0, transition: 'width .25s cubic-bezier(.4,0,.2,1)' }}>
         {/* Logo */}
-        <div style={{ height: 64, display: 'flex', alignItems: 'center', gap: 10, padding: '0 16px', borderBottom: `1px solid ${T.border}`, flexShrink: 0 }}>
-          <div style={{ width: 32, height: 32, borderRadius: 10, background: `linear-gradient(135deg, ${T.indigo}, ${T.cyan})`, display: 'flex', alignItems: 'center', justifyContent: 'center', flexShrink: 0 }}>{Ic(Brain, 15, '#fff')}</div>
-          {!collapsed && <span style={{ fontWeight: 700, fontSize: 15, letterSpacing: '-0.5px', whiteSpace: 'nowrap' }}>SmartStudy<span style={{ color: T.text3, fontWeight: 400 }}> AI</span></span>}
+        <div style={{ height: 64, display: 'flex', alignItems: 'center', gap: 10, padding: '0 16px', borderBottom: '1px solid rgba(255,255,255,0.15)', flexShrink: 0 }}>
+          <div style={{ width: 32, height: 32, borderRadius: 10, background: 'rgba(255,255,255,0.2)', display: 'flex', alignItems: 'center', justifyContent: 'center', flexShrink: 0 }}>{Ic(Brain, 15, '#fff')}</div>
+          {!collapsed && <span style={{ fontWeight: 700, fontSize: 15, letterSpacing: '-0.5px', whiteSpace: 'nowrap', color: '#fff' }}>SmartStudy<span style={{ color: 'rgba(255,255,255,0.7)', fontWeight: 400 }}> AI</span></span>}
         </div>
 
         {/* Nav items */}
@@ -953,9 +953,8 @@ export default function App() {
             const active = page === item.id;
             return (
               <button key={item.id} onClick={() => setPage(item.id)}
-                className={active ? '' : ''}
-                style={{ width: '100%', padding: collapsed ? '10px 0' : '9px 12px', borderRadius: 10, fontSize: 12, fontWeight: active ? 600 : 400, background: active ? T.indigoSoft : 'transparent', color: active ? T.indigo : T.text2, border: active ? `1px solid ${T.indigoGlow}` : '1px solid transparent', cursor: 'pointer', display: 'flex', alignItems: 'center', gap: 10, marginBottom: 2, justifyContent: collapsed ? 'center' : 'flex-start', transition: 'all .15s' }}>
-                {Ic(item.icon, 17, active ? T.indigo : T.text3)}
+                style={{ width: '100%', padding: collapsed ? '10px 0' : '9px 12px', borderRadius: 10, fontSize: 12, fontWeight: active ? 600 : 400, background: active ? 'rgba(255,255,255,0.22)' : 'transparent', color: '#fff', border: active ? '1px solid rgba(255,255,255,0.25)' : '1px solid transparent', cursor: 'pointer', display: 'flex', alignItems: 'center', gap: 10, marginBottom: 2, justifyContent: collapsed ? 'center' : 'flex-start', transition: 'all .15s' }}>
+                {Ic(item.icon, 17, '#fff')}
                 {!collapsed && <span style={{ whiteSpace: 'nowrap' }}>{item.label}</span>}
               </button>
             );
@@ -963,14 +962,14 @@ export default function App() {
         </div>
 
         {/* Bottom */}
-        <div style={{ padding: 8, borderTop: `1px solid ${T.border}`, flexShrink: 0 }}>
+        <div style={{ padding: 8, borderTop: '1px solid rgba(255,255,255,0.15)', flexShrink: 0 }}>
           <button onClick={() => { setCollapsed(!collapsed); }}
-            style={{ width: '100%', padding: collapsed ? '10px 0' : '9px 12px', borderRadius: 10, fontSize: 12, background: 'transparent', color: T.text3, border: 'none', cursor: 'pointer', display: 'flex', alignItems: 'center', gap: 10, justifyContent: collapsed ? 'center' : 'flex-start' }}>
-            {Ic(ChevronLeft, 16, T.text3)} {!collapsed && 'Collapse'}
+            style={{ width: '100%', padding: collapsed ? '10px 0' : '9px 12px', borderRadius: 10, fontSize: 12, background: 'transparent', color: 'rgba(255,255,255,0.7)', border: 'none', cursor: 'pointer', display: 'flex', alignItems: 'center', gap: 10, justifyContent: collapsed ? 'center' : 'flex-start' }}>
+            {Ic(ChevronLeft, 16, 'rgba(255,255,255,0.7)')} {!collapsed && 'Collapse'}
           </button>
           <button onClick={() => setPage('landing')}
-            style={{ width: '100%', padding: collapsed ? '10px 0' : '9px 12px', borderRadius: 10, fontSize: 12, background: 'transparent', color: T.red, border: 'none', cursor: 'pointer', display: 'flex', alignItems: 'center', gap: 10, justifyContent: collapsed ? 'center' : 'flex-start' }}>
-            {Ic(LogOut, 16, T.red)} {!collapsed && 'Logout'}
+            style={{ width: '100%', padding: collapsed ? '10px 0' : '9px 12px', borderRadius: 10, fontSize: 12, background: 'transparent', color: 'rgba(255,255,255,0.85)', border: 'none', cursor: 'pointer', display: 'flex', alignItems: 'center', gap: 10, justifyContent: collapsed ? 'center' : 'flex-start' }}>
+            {Ic(LogOut, 16, 'rgba(255,255,255,0.85)')} {!collapsed && 'Logout'}
           </button>
         </div>
       </aside>
@@ -978,7 +977,7 @@ export default function App() {
       {/* Main content */}
       <div style={{ flex: 1, display: 'flex', flexDirection: 'column', minWidth: 0 }}>
         {/* Top bar */}
-        <header style={{ height: 64, display: 'flex', alignItems: 'center', justifyContent: 'space-between', padding: '0 24px', borderBottom: `1px solid ${T.border}`, flexShrink: 0, background: 'rgba(236,254,255,0.7)', backdropFilter: 'blur(12px)' }}>
+        <header style={{ height: 64, display: 'flex', alignItems: 'center', justifyContent: 'space-between', padding: '0 24px', borderBottom: `1px solid ${T.border}`, flexShrink: 0, background: '#FFFFFF', boxShadow: '0 1px 3px rgba(0,0,0,0.04)' }}>
           <div style={{ display: 'flex', alignItems: 'center', gap: 12 }}>
             <h2 style={{ fontSize: 16, fontWeight: 700, letterSpacing: '-0.3px' }}>{SIDEBAR_ITEMS.find(i => i.id === page)?.label || 'Dashboard'}</h2>
           </div>
@@ -996,7 +995,7 @@ export default function App() {
                 <div style={{ position: 'absolute', top: 6, right: 6, width: 7, height: 7, borderRadius: '50%', background: T.red, border: `2px solid ${T.bg}` }} />
               </button>
               {notifOpen && (
-                <div style={{ position: 'absolute', top: 44, right: 0, width: 280, borderRadius: 14, background: T.surface, border: `1px solid ${T.border}`, boxShadow: '0 16px 48px rgba(0,0,0,0.08)', zIndex: 100, animation: 'slide-up .2s ease' }}>
+                <div style={{ position: 'absolute', top: 44, right: 0, width: 280, borderRadius: 14, background: T.surface, border: `1px solid ${T.border}`, boxShadow: '0 16px 48px rgba(0,0,0,0.06)', zIndex: 100, animation: 'slide-up .2s ease' }}>
                   <div style={{ padding: '14px 16px', borderBottom: `1px solid ${T.border}`, display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
                     <span style={{ fontSize: 13, fontWeight: 600 }}>Notifications</span>
                     <span style={{ fontSize: 10, color: T.indigo, cursor: 'pointer' }}>Mark all read</span>
@@ -1020,7 +1019,7 @@ export default function App() {
                 S
               </button>
               {profileOpen && (
-                <div style={{ position: 'absolute', top: 44, right: 0, width: 200, borderRadius: 14, background: T.surface, border: `1px solid ${T.border}`, boxShadow: '0 16px 48px rgba(0,0,0,0.08)', zIndex: 100, animation: 'slide-up .2s ease' }}>
+                <div style={{ position: 'absolute', top: 44, right: 0, width: 200, borderRadius: 14, background: T.surface, border: `1px solid ${T.border}`, boxShadow: '0 16px 48px rgba(0,0,0,0.06)', zIndex: 100, animation: 'slide-up .2s ease' }}>
                   <div style={{ padding: '14px 16px', borderBottom: `1px solid ${T.border}` }}>
                     <p style={{ fontSize: 13, fontWeight: 600 }}>Student</p>
                     <p style={{ fontSize: 11, color: T.text3 }}>student@university.edu</p>
