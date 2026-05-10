@@ -278,7 +278,7 @@ export default function App() {
         'Authorization': `Bearer ${apiKey}`,
       },
       body: JSON.stringify({
-        model: 'claude-sonnet-4-20250514',
+        model: 'drytis/kimi-k2.5',
         max_tokens: 1500,
         messages: [
           { role: 'system', content: systemPrompt },
