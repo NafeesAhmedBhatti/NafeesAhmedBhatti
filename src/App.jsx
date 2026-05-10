@@ -382,6 +382,31 @@ function DashboardPage({ setPage }) {
         <StatCard icon={Zap} label="AI Usage" value="134" sub="queries today" color={T.pink} />
       </div>
 
+      {/* AI Study Tools */}
+      <div style={{ marginBottom: 24 }}>
+        <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', marginBottom: 14 }}>
+          <h3 style={{ fontSize: 16, fontWeight: 700, display: 'flex', alignItems: 'center', gap: 8 }}>{Ic(Sparkles, 18, T.mint)} AI Study Tools</h3>
+        </div>
+        <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(155px, 1fr))', gap: 12 }}>
+          {[
+            [Upload, 'Upload Notes', 'Drop PDF, TXT, DOCX', T.mint, '#FFFFFF'],
+            [Brain, 'Explain Notes', 'Simple explanations', T.emerald, T.text],
+            [Target, 'Generate Quiz', 'Test yourself', T.orange, T.text],
+            [ListChecks, 'Key Points', 'Extract main ideas', T.green, T.text],
+            [Layers, 'Flashcards', 'Spaced repetition', T.cyan, T.text],
+            [FileText, 'Summarize', 'Quick summaries', T.purple, T.text],
+          ].map(([Ic2, title, desc, color, txtCol]) => (
+            <div key={title} style={{ padding: 20, borderRadius: 16, background: '#FFFFFF', border: `1px solid ${T.border}`, cursor: 'pointer', transition: 'all .2s', boxShadow: '0 1px 4px rgba(0,0,0,0.04)' }}
+              onMouseEnter={e => { e.currentTarget.style.boxShadow = `0 4px 20px ${color}18`; e.currentTarget.style.borderColor = `${color}40`; }}
+              onMouseLeave={e => { e.currentTarget.style.boxShadow = '0 1px 4px rgba(0,0,0,0.04)'; e.currentTarget.style.borderColor = T.border; }}>
+              <div style={{ width: 44, height: 44, borderRadius: 14, background: `${color}15`, display: 'flex', alignItems: 'center', justifyContent: 'center', marginBottom: 14 }}>{Ic(Ic2, 22, color)}</div>
+              <h4 style={{ fontSize: 14, fontWeight: 600, marginBottom: 4, color: T.text }}>{title}</h4>
+              <p style={{ fontSize: 11, color: T.text3, lineHeight: 1.5 }}>{desc}</p>
+            </div>
+          ))}
+        </div>
+      </div>
+
       <div style={{ display: 'grid', gridTemplateColumns: '2fr 1fr', gap: 16, marginBottom: 24 }}>
         {/* Weekly Chart */}
         <div style={{ padding: 22, borderRadius: 16, background: T.surface, border: `1px solid ${T.border}` }}>
@@ -454,48 +479,21 @@ function DashboardPage({ setPage }) {
 }
 
 // ═══════════════════════════════════════════════════════════════
-// AI CHAT PAGE
+// AI CHAT PAGE — Clean chat only, no sidebar
 // ═══════════════════════════════════════════════════════════════
 function AIChatPage() {
   const [messages, setMessages] = useState([]);
   const [input, setInput] = useState('');
   const [loading, setLoading] = useState(false);
-  const [notes, setNotes] = useState(null);
-  const [dragOver, setDragOver] = useState(false);
-  const [showUpload, setShowUpload] = useState(false);
-  const [tool, setTool] = useState('explain');
   const chatRef = useRef();
 
   useEffect(() => { chatRef.current?.scrollTo({ top: chatRef.current.scrollHeight, behavior: 'smooth' }); }, [messages, loading]);
-
-  const handleFile = useCallback(async (f) => {
-    try {
-      const ct = await extractText(f);
-      if (!ct.trim()) throw new Error('Empty file');
-      setNotes({ name: f.name, content: ct.trim() });
-      setShowUpload(false);
-      // Auto-explain
-      setMessages([{ role: 'user', content: 'Explain my notes' }]); setLoading(true);
-      const ai = await callAI(PROMPTS.explain(ct.trim()));
-      setMessages(p => [...p, { role: 'assistant', content: ai }]);
-      setLoading(false);
-    } catch (e) { alert('Error: ' + e.message); }
-  }, []);
-
-  const sendTool = async (id, nc) => {
-    const t = STUDY_TOOLS.find(x => x.id === id);
-    if (!t?.prompt || !nc) return;
-    setMessages(p => [...p, { role: 'user', content: t.prompt }]); setLoading(true);
-    try { const ai = await callAI(PROMPTS[id](nc)); setMessages(p => [...p, { role: 'assistant', content: ai }]); }
-    catch (e) { setMessages(p => [...p, { role: 'assistant', content: `Error: ${e.message}` }]); }
-    setLoading(false);
-  };
 
   const send = async () => {
     const t = input.trim(); if (!t || loading) return;
     const nm = [...messages, { role: 'user', content: t }]; setMessages(nm); setInput(''); setLoading(true);
     try {
-      const sys = notes ? PROMPTS.ask(notes.content) : 'You are SmartStudy AI, a helpful study assistant. Be concise and helpful.';
+      const sys = 'You are SmartStudy AI, a helpful and encouraging study assistant. Give clear, concise answers. Use bullet points and examples when helpful.';
       const ai = await callAI(sys, nm.map(m => ({ role: m.role, content: m.content })));
       setMessages(p => [...p, { role: 'assistant', content: ai }]);
     } catch (e) { setMessages(p => [...p, { role: 'assistant', content: `Error: ${e.message}` }]); }
@@ -508,125 +506,58 @@ function AIChatPage() {
   };
 
   return (
-    <div style={{ display: 'flex', height: 'calc(100vh - 64px)', animation: 'slide-up .4s ease' }}>
-      {/* Chat sidebar - Beautiful study tools panel */}
-      <div style={{ width: 260, borderRight: `1px solid ${T.border}`, background: '#FFFFFF', display: 'flex', flexDirection: 'column', flexShrink: 0 }}>
-        {/* Upload button */}
-        <div style={{ padding: '16px 14px 14px' }}>
-          <button onClick={() => setShowUpload(true)}
-            className="glow-btn"
-            style={{ width: '100%', padding: '12px 16px', borderRadius: 14, fontSize: 13, fontWeight: 600, background: `linear-gradient(135deg, ${T.mint}, ${T.emerald})`, color: '#fff', border: 'none', cursor: 'pointer', display: 'flex', alignItems: 'center', justifyContent: 'center', gap: 8, boxShadow: `0 4px 16px ${T.mintGlow}` }}>
-            {Ic(Upload, 17, '#fff')} Upload Notes
+    <div style={{ display: 'flex', flexDirection: 'column', height: 'calc(100vh - 64px)', animation: 'slide-up .4s ease' }}>
+      {/* Chat area */}
+      <div ref={chatRef} style={{ flex: 1, overflowY: 'auto', padding: 24 }}>
+        <div style={{ maxWidth: 680, margin: '0 auto', display: 'flex', flexDirection: 'column', gap: 16 }}>
+          {messages.length === 0 && (
+            <div style={{ textAlign: 'center', padding: '100px 20px 60px' }}>
+              <div style={{ width: 72, height: 72, borderRadius: 22, background: T.mintSoft, display: 'flex', alignItems: 'center', justifyContent: 'center', margin: '0 auto 24px', boxShadow: `0 4px 24px ${T.mintGlow}` }}>{Ic(Bot, 32, T.mint)}</div>
+              <h2 style={{ fontSize: 24, fontWeight: 700, marginBottom: 10, color: T.text }}>Ask me anything</h2>
+              <p style={{ fontSize: 14, color: T.text3, maxWidth: 380, margin: '0 auto', lineHeight: 1.7 }}>I'm your AI study assistant. Ask questions, get explanations, or explore any topic.</p>
+              {/* Quick prompts */}
+              <div style={{ display: 'flex', flexWrap: 'wrap', gap: 8, justifyContent: 'center', marginTop: 28 }}>
+                {['Explain quantum physics simply', 'Help me with calculus', 'Study tips for exams', 'Summarize a topic for me'].map(q => (
+                  <button key={q} onClick={() => { setInput(q); }}
+                    style={{ padding: '8px 16px', borderRadius: 20, fontSize: 12, background: '#FFFFFF', border: `1px solid ${T.border}`, color: T.text2, cursor: 'pointer', transition: 'all .15s' }}>
+                    {q}
+                  </button>
+                ))}
+              </div>
+            </div>
+          )}
+          {messages.map((m, i) => (
+            <div key={i} style={{ display: 'flex', gap: 12, justifyContent: m.role === 'user' ? 'flex-end' : 'flex-start' }}>
+              {m.role === 'assistant' && <div style={{ width: 36, height: 36, borderRadius: 12, background: T.mintSoft, display: 'flex', alignItems: 'center', justifyContent: 'center', flexShrink: 0, marginTop: 2 }}>{Ic(Bot, 17, T.mint)}</div>}
+              <div style={{ maxWidth: m.role === 'user' ? '70%' : '80%', padding: '14px 18px', borderRadius: 18, fontSize: 13.5, lineHeight: 1.75, whiteSpace: 'pre-wrap', wordBreak: 'break-word', background: m.role === 'user' ? `linear-gradient(135deg, ${T.mint}, ${T.emerald})` : '#FFFFFF', color: m.role === 'user' ? '#fff' : T.text, border: m.role === 'user' ? 'none' : `1px solid ${T.border}`, boxShadow: m.role === 'user' ? `0 2px 12px ${T.mintGlow}` : '0 1px 4px rgba(0,0,0,0.04)', borderTopRightRadius: m.role === 'user' ? 4 : 18, borderTopLeftRadius: m.role === 'assistant' ? 4 : 18 }}>{m.content}</div>
+              {m.role === 'user' && <div style={{ width: 36, height: 36, borderRadius: 12, background: T.surface2, display: 'flex', alignItems: 'center', justifyContent: 'center', flexShrink: 0, marginTop: 2 }}>{Ic(User, 17, T.text3)}</div>}
+            </div>
+          ))}
+          {loading && (
+            <div style={{ display: 'flex', gap: 12 }}>
+              <div style={{ width: 36, height: 36, borderRadius: 12, background: T.mintSoft, display: 'flex', alignItems: 'center', justifyContent: 'center' }}>{Ic(Bot, 17, T.mint)}</div>
+              <div style={{ padding: '14px 22px', borderRadius: 18, borderTopLeftRadius: 4, background: '#FFFFFF', border: `1px solid ${T.border}`, display: 'flex', alignItems: 'center', gap: 6 }}>
+                {[0, 1, 2].map(i => <div key={i} style={{ width: 7, height: 7, borderRadius: '50%', background: T.mint, animation: 'dot 1.2s infinite', animationDelay: `${i * 0.15}s` }} />)}
+              </div>
+            </div>
+          )}
+        </div>
+      </div>
+      {/* Input bar */}
+      <div style={{ borderTop: `1px solid ${T.border}`, background: '#FFFFFF', padding: '16px 24px', flexShrink: 0 }}>
+        <div style={{ maxWidth: 680, margin: '0 auto', display: 'flex', gap: 10, alignItems: 'center' }}>
+          {messages.length > 0 && (
+            <button onClick={exportChat} title="Export chat" style={{ width: 40, height: 40, borderRadius: 12, background: T.surface2, border: `1px solid ${T.border}`, cursor: 'pointer', display: 'flex', alignItems: 'center', justifyContent: 'center', flexShrink: 0 }}>{Ic(Download, 16, T.text3)}</button>
+          )}
+          <input value={input} onChange={e => setInput(e.target.value)} onKeyDown={e => { if (e.key === 'Enter' && !e.shiftKey) { e.preventDefault(); send(); } }}
+            placeholder="Ask me anything..." disabled={loading}
+            style={{ flex: 1, padding: '13px 18px', borderRadius: 14, background: T.bg2, border: `1px solid ${T.border}`, color: T.text, fontSize: 14, outline: 'none', opacity: loading ? 0.5 : 1 }} />
+          <button onClick={send} disabled={!input.trim() || loading} className="glow-btn"
+            style={{ padding: '13px 24px', borderRadius: 14, border: 'none', background: input.trim() && !loading ? `linear-gradient(135deg, ${T.mint}, ${T.emerald})` : T.surface3, color: input.trim() && !loading ? '#fff' : T.text3, cursor: input.trim() && !loading ? 'pointer' : 'not-allowed', fontSize: 14, fontWeight: 600, display: 'flex', alignItems: 'center', gap: 7 }}>
+            {Ic(Send, 15)} Send
           </button>
         </div>
-
-        {/* Active notes badge */}
-        {notes && (
-          <div style={{ padding: '0 14px 14px' }}>
-            <div style={{ padding: '10px 12px', borderRadius: 12, background: T.emeraldSoft, border: `1px solid rgba(16,185,129,0.2)`, display: 'flex', alignItems: 'center', gap: 10 }}>
-              <div style={{ width: 32, height: 32, borderRadius: 8, background: 'rgba(16,185,129,0.15)', display: 'flex', alignItems: 'center', justifyContent: 'center', flexShrink: 0 }}>{Ic(FileText, 16, T.green)}</div>
-              <div style={{ flex: 1, minWidth: 0 }}>
-                <p style={{ fontSize: 11, color: T.green, fontWeight: 600, overflow: 'hidden', textOverflow: 'ellipsis', whiteSpace: 'nowrap' }}>{notes.name}</p>
-                <p style={{ fontSize: 10, color: T.text3 }}>Loaded</p>
-              </div>
-              <button onClick={() => setNotes(null)} style={{ background: 'none', border: 'none', cursor: 'pointer', padding: 2 }}>{Ic(X, 14, T.text3)}</button>
-            </div>
-          </div>
-        )}
-
-        {/* Study Tools */}
-        <div style={{ padding: '0 10px 10px', flex: 1, overflowY: 'auto' }}>
-          <p style={{ fontSize: 10, fontWeight: 700, color: T.text3, textTransform: 'uppercase', letterSpacing: '1.2px', padding: '0 8px 10px' }}>Study Tools</p>
-          <div style={{ display: 'flex', flexDirection: 'column', gap: 4 }}>
-            {STUDY_TOOLS.map(t => {
-              const active = tool === t.id;
-              return (
-                <button key={t.id} onClick={() => { if (loading) return; setTool(t.id); if (notes) sendTool(t.id, notes.content); }}
-                  style={{ width: '100%', padding: '10px 12px', borderRadius: 12, fontSize: 13, fontWeight: active ? 600 : 450, background: active ? `${t.color}12` : 'transparent', color: active ? t.color : T.text2, border: active ? `1px solid ${t.color}25` : '1px solid transparent', cursor: 'pointer', display: 'flex', alignItems: 'center', gap: 11, transition: 'all .15s', textAlign: 'left' }}>
-                  <div style={{ width: 34, height: 34, borderRadius: 10, background: active ? `${t.color}18` : T.surface3, display: 'flex', alignItems: 'center', justifyContent: 'center', flexShrink: 0, transition: 'all .15s' }}>
-                    {Ic(t.icon, 17, active ? t.color : T.text3)}
-                  </div>
-                  <span style={{ whiteSpace: 'nowrap' }}>{t.label}</span>
-                </button>
-              );
-            })}
-          </div>
-        </div>
-
-        {/* Export */}
-        {messages.length > 0 && (
-          <div style={{ padding: '10px 14px', borderTop: `1px solid ${T.border}` }}>
-            <button onClick={exportChat} style={{ width: '100%', padding: 9, borderRadius: 10, fontSize: 12, background: T.surface2, border: `1px solid ${T.border}`, color: T.text2, cursor: 'pointer', display: 'flex', alignItems: 'center', justifyContent: 'center', gap: 6, fontWeight: 500 }}>
-              {Ic(Download, 14, T.text3)} Export Chat
-            </button>
-          </div>
-        )}
       </div>
-
-      {/* Chat area */}
-      <div style={{ flex: 1, display: 'flex', flexDirection: 'column', minWidth: 0 }}>
-        <div ref={chatRef} style={{ flex: 1, overflowY: 'auto', padding: 24 }}>
-          <div style={{ maxWidth: 640, margin: '0 auto', display: 'flex', flexDirection: 'column', gap: 16 }}>
-            {messages.length === 0 && (
-              <div style={{ textAlign: 'center', padding: '80px 20px' }}>
-                <div style={{ width: 64, height: 64, borderRadius: 20, background: T.mintSoft, display: 'flex', alignItems: 'center', justifyContent: 'center', margin: '0 auto 20px', boxShadow: `0 4px 20px ${T.mintGlow}` }}>{Ic(Bot, 28, T.mint)}</div>
-                <h2 style={{ fontSize: 22, fontWeight: 700, marginBottom: 8, color: T.text }}>SmartStudy AI</h2>
-                <p style={{ fontSize: 14, color: T.text3, maxWidth: 340, margin: '0 auto', lineHeight: 1.7 }}>Upload your notes or ask me anything. I can explain, quiz, summarize, and more.</p>
-              </div>
-            )}
-            {messages.map((m, i) => (
-              <div key={i} style={{ display: 'flex', gap: 10, justifyContent: m.role === 'user' ? 'flex-end' : 'flex-start' }}>
-                {m.role === 'assistant' && <div style={{ width: 32, height: 32, borderRadius: 10, background: T.mintSoft, display: 'flex', alignItems: 'center', justifyContent: 'center', flexShrink: 0, marginTop: 2 }}>{Ic(Bot, 15, T.mint)}</div>}
-                <div style={{ maxWidth: m.role === 'user' ? '70%' : '80%', padding: '13px 16px', borderRadius: 16, fontSize: 13, lineHeight: 1.7, whiteSpace: 'pre-wrap', wordBreak: 'break-word', background: m.role === 'user' ? `linear-gradient(135deg, ${T.mint}, ${T.emerald})` : T.surface, color: m.role === 'user' ? '#fff' : T.text, border: m.role === 'user' ? 'none' : `1px solid ${T.border}`, boxShadow: m.role === 'user' ? `0 2px 12px ${T.mintGlow}` : '0 1px 3px rgba(0,0,0,0.04)', borderTopRightRadius: m.role === 'user' ? 4 : 16, borderTopLeftRadius: m.role === 'assistant' ? 4 : 16 }}>{m.content}</div>
-                {m.role === 'user' && <div style={{ width: 32, height: 32, borderRadius: 10, background: T.surface2, display: 'flex', alignItems: 'center', justifyContent: 'center', flexShrink: 0, marginTop: 2 }}>{Ic(User, 15, T.text3)}</div>}
-              </div>
-            ))}
-            {loading && (
-              <div style={{ display: 'flex', gap: 10 }}>
-                <div style={{ width: 32, height: 32, borderRadius: 10, background: T.mintSoft, display: 'flex', alignItems: 'center', justifyContent: 'center' }}>{Ic(Bot, 15, T.mint)}</div>
-                <div style={{ padding: '13px 20px', borderRadius: 16, borderTopLeftRadius: 4, background: T.surface, border: `1px solid ${T.border}`, display: 'flex', alignItems: 'center', gap: 6 }}>
-                  {[0, 1, 2].map(i => <div key={i} style={{ width: 7, height: 7, borderRadius: '50%', background: T.mint, animation: 'dot 1.2s infinite', animationDelay: `${i * 0.15}s` }} />)}
-                </div>
-              </div>
-            )}
-          </div>
-        </div>
-        <div style={{ borderTop: `1px solid ${T.border}`, background: '#FFFFFF', padding: '14px 20px' }}>
-          <div style={{ maxWidth: 640, margin: '0 auto', display: 'flex', gap: 8 }}>
-            <input value={input} onChange={e => setInput(e.target.value)} onKeyDown={e => { if (e.key === 'Enter' && !e.shiftKey) { e.preventDefault(); send(); } }}
-              placeholder="Ask anything about your notes..." disabled={loading}
-              style={{ flex: 1, padding: '12px 16px', borderRadius: 12, background: T.bg2, border: `1px solid ${T.border}`, color: T.text, fontSize: 13, outline: 'none', opacity: loading ? 0.5 : 1 }} />
-            <button onClick={send} disabled={!input.trim() || loading} className="glow-btn"
-              style={{ padding: '12px 20px', borderRadius: 12, border: 'none', background: input.trim() && !loading ? `linear-gradient(135deg, ${T.mint}, ${T.emerald})` : T.surface3, color: input.trim() && !loading ? '#fff' : T.text3, cursor: input.trim() && !loading ? 'pointer' : 'not-allowed', fontSize: 13, fontWeight: 600, display: 'flex', alignItems: 'center', gap: 6 }}>
-              Send {Ic(Send, 14)}
-            </button>
-          </div>
-        </div>
-      </div>
-
-      {/* Upload modal - FIXED: visible overlay */}
-      {showUpload && (
-        <div style={{ position: 'fixed', inset: 0, zIndex: 300, display: 'flex', alignItems: 'center', justifyContent: 'center', background: 'rgba(0,0,0,0.35)', backdropFilter: 'blur(6px)' }} onClick={e => { if (e.target === e.currentTarget) setShowUpload(false); }}>
-          <div style={{ width: '100%', maxWidth: 460, margin: '0 24px', borderRadius: 20, background: '#FFFFFF', border: `1px solid ${T.border}`, boxShadow: '0 24px 64px rgba(0,0,0,0.12)', animation: 'slide-up .3s ease' }}>
-            <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', padding: '20px 24px', borderBottom: `1px solid ${T.border}` }}>
-              <div style={{ display: 'flex', alignItems: 'center', gap: 10 }}>
-                <div style={{ width: 36, height: 36, borderRadius: 10, background: T.mintSoft, display: 'flex', alignItems: 'center', justifyContent: 'center' }}>{Ic(Upload, 18, T.mint)}</div>
-                <h3 style={{ fontSize: 16, fontWeight: 600, color: T.text }}>Upload Notes</h3>
-              </div>
-              <button onClick={() => setShowUpload(false)} style={{ width: 32, height: 32, borderRadius: 8, background: T.surface2, border: 'none', cursor: 'pointer', display: 'flex', alignItems: 'center', justifyContent: 'center' }}>{Ic(X, 16, T.text3)}</button>
-            </div>
-            <div style={{ padding: 24 }}>
-              <div onDragOver={e => { e.preventDefault(); setDragOver(true); }} onDragLeave={() => setDragOver(false)} onDrop={e => { e.preventDefault(); setDragOver(false); if (e.dataTransfer.files[0]) handleFile(e.dataTransfer.files[0]); setShowUpload(false); }}
-                onClick={() => { const f = document.createElement('input'); f.type = 'file'; f.accept = '.pdf,.txt,.docx'; f.onchange = e => { if (e.target.files[0]) { handleFile(e.target.files[0]); setShowUpload(false); } }; f.click(); }}
-                style={{ padding: '44px 24px', borderRadius: 16, background: dragOver ? T.mintSoft : T.bg2, border: `2px dashed ${dragOver ? T.mint : T.borderLight}`, textAlign: 'center', cursor: 'pointer', transition: 'all .2s' }}>
-                <div style={{ width: 52, height: 52, borderRadius: 16, background: dragOver ? T.mintGlow : T.mintSoft, display: 'flex', alignItems: 'center', justifyContent: 'center', margin: '0 auto 16px' }}>{Ic(Upload, 24, dragOver ? T.mint : T.text3)}</div>
-                <p style={{ fontSize: 14, fontWeight: 600, color: dragOver ? T.mint : T.text, marginBottom: 4 }}>{dragOver ? 'Drop your file!' : 'Drag & drop or click to upload'}</p>
-                <p style={{ fontSize: 12, color: T.text3 }}>Supports PDF, TXT, DOCX files</p>
-              </div>
-            </div>
-          </div>
-        </div>
-      )}
     </div>
   );
 }
