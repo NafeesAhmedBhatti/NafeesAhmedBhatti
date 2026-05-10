@@ -493,33 +493,55 @@ function AIChatPage() {
 
   return (
     <div style={{ display: 'flex', height: 'calc(100vh - 64px)', animation: 'slide-up .4s ease' }}>
-      {/* Chat sidebar */}
-      <div style={{ width: 220, borderRight: `1px solid ${T.border}`, background: T.bg2, display: 'flex', flexDirection: 'column', flexShrink: 0 }}>
-        <div style={{ padding: 14, borderBottom: `1px solid ${T.border}` }}>
-          <GlowButton onClick={() => setShowUpload(true)} size="sm" icon={Upload} style={{ width: '100%', justifyContent: 'center' }}>Upload Notes</GlowButton>
+      {/* Chat sidebar - Beautiful study tools panel */}
+      <div style={{ width: 260, borderRight: `1px solid ${T.border}`, background: '#FFFFFF', display: 'flex', flexDirection: 'column', flexShrink: 0 }}>
+        {/* Upload button */}
+        <div style={{ padding: '16px 14px 14px' }}>
+          <button onClick={() => setShowUpload(true)}
+            className="glow-btn"
+            style={{ width: '100%', padding: '12px 16px', borderRadius: 14, fontSize: 13, fontWeight: 600, background: `linear-gradient(135deg, ${T.mint}, ${T.emerald})`, color: '#fff', border: 'none', cursor: 'pointer', display: 'flex', alignItems: 'center', justifyContent: 'center', gap: 8, boxShadow: `0 4px 16px ${T.mintGlow}` }}>
+            {Ic(Upload, 17, '#fff')} Upload Notes
+          </button>
         </div>
+
+        {/* Active notes badge */}
         {notes && (
-          <div style={{ padding: 12, borderBottom: `1px solid ${T.border}` }}>
-            <div style={{ padding: '8px 10px', borderRadius: 8, background: T.greenSoft, display: 'flex', alignItems: 'center', gap: 8 }}>
-              {Ic(FileText, 12, T.green)}
-              <span style={{ fontSize: 11, color: T.green, fontWeight: 500, overflow: 'hidden', textOverflow: 'ellipsis', whiteSpace: 'nowrap' }}>{notes.name}</span>
-              <button onClick={() => setNotes(null)} style={{ background: 'none', border: 'none', cursor: 'pointer', marginLeft: 'auto' }}>{Ic(X, 10, T.text3)}</button>
+          <div style={{ padding: '0 14px 14px' }}>
+            <div style={{ padding: '10px 12px', borderRadius: 12, background: T.emeraldSoft, border: `1px solid rgba(16,185,129,0.2)`, display: 'flex', alignItems: 'center', gap: 10 }}>
+              <div style={{ width: 32, height: 32, borderRadius: 8, background: 'rgba(16,185,129,0.15)', display: 'flex', alignItems: 'center', justifyContent: 'center', flexShrink: 0 }}>{Ic(FileText, 16, T.green)}</div>
+              <div style={{ flex: 1, minWidth: 0 }}>
+                <p style={{ fontSize: 11, color: T.green, fontWeight: 600, overflow: 'hidden', textOverflow: 'ellipsis', whiteSpace: 'nowrap' }}>{notes.name}</p>
+                <p style={{ fontSize: 10, color: T.text3 }}>Loaded</p>
+              </div>
+              <button onClick={() => setNotes(null)} style={{ background: 'none', border: 'none', cursor: 'pointer', padding: 2 }}>{Ic(X, 14, T.text3)}</button>
             </div>
           </div>
         )}
-        <div style={{ padding: 10, flex: 1 }}>
-          <p style={{ fontSize: 9, color: T.text3, textTransform: 'uppercase', letterSpacing: '1px', padding: '0 6px', marginBottom: 6 }}>Study Tools</p>
-          {STUDY_TOOLS.map(t => (
-            <button key={t.id} onClick={() => { if (loading) return; setTool(t.id); if (notes) sendTool(t.id, notes.content); }}
-              style={{ width: '100%', padding: '7px 8px', borderRadius: 7, fontSize: 11, background: tool === t.id ? `${t.color}10` : 'transparent', color: tool === t.id ? t.color : T.text2, border: tool === t.id ? `1px solid ${t.color}20` : '1px solid transparent', cursor: 'pointer', display: 'flex', alignItems: 'center', gap: 7, marginBottom: 2 }}>
-              {Ic(t.icon, 13, tool === t.id ? t.color : T.text3)} {t.label}
-            </button>
-          ))}
+
+        {/* Study Tools */}
+        <div style={{ padding: '0 10px 10px', flex: 1, overflowY: 'auto' }}>
+          <p style={{ fontSize: 10, fontWeight: 700, color: T.text3, textTransform: 'uppercase', letterSpacing: '1.2px', padding: '0 8px 10px' }}>Study Tools</p>
+          <div style={{ display: 'flex', flexDirection: 'column', gap: 4 }}>
+            {STUDY_TOOLS.map(t => {
+              const active = tool === t.id;
+              return (
+                <button key={t.id} onClick={() => { if (loading) return; setTool(t.id); if (notes) sendTool(t.id, notes.content); }}
+                  style={{ width: '100%', padding: '10px 12px', borderRadius: 12, fontSize: 13, fontWeight: active ? 600 : 450, background: active ? `${t.color}12` : 'transparent', color: active ? t.color : T.text2, border: active ? `1px solid ${t.color}25` : '1px solid transparent', cursor: 'pointer', display: 'flex', alignItems: 'center', gap: 11, transition: 'all .15s', textAlign: 'left' }}>
+                  <div style={{ width: 34, height: 34, borderRadius: 10, background: active ? `${t.color}18` : T.surface3, display: 'flex', alignItems: 'center', justifyContent: 'center', flexShrink: 0, transition: 'all .15s' }}>
+                    {Ic(t.icon, 17, active ? t.color : T.text3)}
+                  </div>
+                  <span style={{ whiteSpace: 'nowrap' }}>{t.label}</span>
+                </button>
+              );
+            })}
+          </div>
         </div>
+
+        {/* Export */}
         {messages.length > 0 && (
-          <div style={{ padding: 10, borderTop: `1px solid ${T.border}` }}>
-            <button onClick={exportChat} style={{ width: '100%', padding: 7, borderRadius: 7, fontSize: 11, background: T.surface, border: `1px solid ${T.border}`, color: T.text3, cursor: 'pointer', display: 'flex', alignItems: 'center', justifyContent: 'center', gap: 6 }}>
-              {Ic(Download, 12, T.text3)} Export Chat
+          <div style={{ padding: '10px 14px', borderTop: `1px solid ${T.border}` }}>
+            <button onClick={exportChat} style={{ width: '100%', padding: 9, borderRadius: 10, fontSize: 12, background: T.surface2, border: `1px solid ${T.border}`, color: T.text2, cursor: 'pointer', display: 'flex', alignItems: 'center', justifyContent: 'center', gap: 6, fontWeight: 500 }}>
+              {Ic(Download, 14, T.text3)} Export Chat
             </button>
           </div>
         )}
@@ -531,56 +553,59 @@ function AIChatPage() {
           <div style={{ maxWidth: 640, margin: '0 auto', display: 'flex', flexDirection: 'column', gap: 16 }}>
             {messages.length === 0 && (
               <div style={{ textAlign: 'center', padding: '80px 20px' }}>
-                <div style={{ width: 56, height: 56, borderRadius: 16, background: T.indigoSoft, display: 'flex', alignItems: 'center', justifyContent: 'center', margin: '0 auto 18px' }}>{Ic(Bot, 26, T.indigo)}</div>
-                <h2 style={{ fontSize: 20, fontWeight: 700, marginBottom: 8 }}>SmartStudy AI</h2>
-                <p style={{ fontSize: 13, color: T.text3, maxWidth: 320, margin: '0 auto', lineHeight: 1.6 }}>Upload your notes or ask me anything. I can explain, quiz, summarize, and more.</p>
+                <div style={{ width: 64, height: 64, borderRadius: 20, background: T.mintSoft, display: 'flex', alignItems: 'center', justifyContent: 'center', margin: '0 auto 20px', boxShadow: `0 4px 20px ${T.mintGlow}` }}>{Ic(Bot, 28, T.mint)}</div>
+                <h2 style={{ fontSize: 22, fontWeight: 700, marginBottom: 8, color: T.text }}>SmartStudy AI</h2>
+                <p style={{ fontSize: 14, color: T.text3, maxWidth: 340, margin: '0 auto', lineHeight: 1.7 }}>Upload your notes or ask me anything. I can explain, quiz, summarize, and more.</p>
               </div>
             )}
             {messages.map((m, i) => (
               <div key={i} style={{ display: 'flex', gap: 10, justifyContent: m.role === 'user' ? 'flex-end' : 'flex-start' }}>
-                {m.role === 'assistant' && <div style={{ width: 28, height: 28, borderRadius: 8, background: T.indigoSoft, display: 'flex', alignItems: 'center', justifyContent: 'center', flexShrink: 0, marginTop: 2 }}>{Ic(Bot, 13, T.indigo)}</div>}
-                <div style={{ maxWidth: m.role === 'user' ? '70%' : '80%', padding: '12px 15px', borderRadius: 14, fontSize: 13, lineHeight: 1.7, whiteSpace: 'pre-wrap', wordBreak: 'break-word', background: m.role === 'user' ? `linear-gradient(135deg, ${T.indigo}, ${T.purple})` : T.surface, color: m.role === 'user' ? '#fff' : T.text, border: m.role === 'user' ? 'none' : `1px solid ${T.border}`, borderTopRightRadius: m.role === 'user' ? 4 : 14, borderTopLeftRadius: m.role === 'assistant' ? 4 : 14 }}>{m.content}</div>
-                {m.role === 'user' && <div style={{ width: 28, height: 28, borderRadius: 8, background: T.surface2, display: 'flex', alignItems: 'center', justifyContent: 'center', flexShrink: 0, marginTop: 2 }}>{Ic(User, 13, T.text3)}</div>}
+                {m.role === 'assistant' && <div style={{ width: 32, height: 32, borderRadius: 10, background: T.mintSoft, display: 'flex', alignItems: 'center', justifyContent: 'center', flexShrink: 0, marginTop: 2 }}>{Ic(Bot, 15, T.mint)}</div>}
+                <div style={{ maxWidth: m.role === 'user' ? '70%' : '80%', padding: '13px 16px', borderRadius: 16, fontSize: 13, lineHeight: 1.7, whiteSpace: 'pre-wrap', wordBreak: 'break-word', background: m.role === 'user' ? `linear-gradient(135deg, ${T.mint}, ${T.emerald})` : T.surface, color: m.role === 'user' ? '#fff' : T.text, border: m.role === 'user' ? 'none' : `1px solid ${T.border}`, boxShadow: m.role === 'user' ? `0 2px 12px ${T.mintGlow}` : '0 1px 3px rgba(0,0,0,0.04)', borderTopRightRadius: m.role === 'user' ? 4 : 16, borderTopLeftRadius: m.role === 'assistant' ? 4 : 16 }}>{m.content}</div>
+                {m.role === 'user' && <div style={{ width: 32, height: 32, borderRadius: 10, background: T.surface2, display: 'flex', alignItems: 'center', justifyContent: 'center', flexShrink: 0, marginTop: 2 }}>{Ic(User, 15, T.text3)}</div>}
               </div>
             ))}
             {loading && (
               <div style={{ display: 'flex', gap: 10 }}>
-                <div style={{ width: 28, height: 28, borderRadius: 8, background: T.indigoSoft, display: 'flex', alignItems: 'center', justifyContent: 'center' }}>{Ic(Bot, 13, T.indigo)}</div>
-                <div style={{ padding: '12px 18px', borderRadius: 14, borderTopLeftRadius: 4, background: T.surface, border: `1px solid ${T.border}`, display: 'flex', alignItems: 'center', gap: 5 }}>
-                  {[0, 1, 2].map(i => <div key={i} style={{ width: 6, height: 6, borderRadius: '50%', background: T.indigo, animation: 'dot 1.2s infinite', animationDelay: `${i * 0.15}s` }} />)}
+                <div style={{ width: 32, height: 32, borderRadius: 10, background: T.mintSoft, display: 'flex', alignItems: 'center', justifyContent: 'center' }}>{Ic(Bot, 15, T.mint)}</div>
+                <div style={{ padding: '13px 20px', borderRadius: 16, borderTopLeftRadius: 4, background: T.surface, border: `1px solid ${T.border}`, display: 'flex', alignItems: 'center', gap: 6 }}>
+                  {[0, 1, 2].map(i => <div key={i} style={{ width: 7, height: 7, borderRadius: '50%', background: T.mint, animation: 'dot 1.2s infinite', animationDelay: `${i * 0.15}s` }} />)}
                 </div>
               </div>
             )}
           </div>
         </div>
-        <div style={{ borderTop: `1px solid ${T.border}`, background: T.surface, padding: '12px 20px' }}>
+        <div style={{ borderTop: `1px solid ${T.border}`, background: '#FFFFFF', padding: '14px 20px' }}>
           <div style={{ maxWidth: 640, margin: '0 auto', display: 'flex', gap: 8 }}>
             <input value={input} onChange={e => setInput(e.target.value)} onKeyDown={e => { if (e.key === 'Enter' && !e.shiftKey) { e.preventDefault(); send(); } }}
               placeholder="Ask anything about your notes..." disabled={loading}
-              style={{ flex: 1, padding: '10px 14px', borderRadius: 10, background: T.bg, border: `1px solid ${T.border}`, color: T.text, fontSize: 13, outline: 'none', opacity: loading ? 0.5 : 1 }} />
+              style={{ flex: 1, padding: '12px 16px', borderRadius: 12, background: T.bg2, border: `1px solid ${T.border}`, color: T.text, fontSize: 13, outline: 'none', opacity: loading ? 0.5 : 1 }} />
             <button onClick={send} disabled={!input.trim() || loading} className="glow-btn"
-              style={{ padding: '10px 18px', borderRadius: 10, border: 'none', background: input.trim() && !loading ? `linear-gradient(135deg, ${T.indigo}, ${T.purple})` : T.surface3, color: input.trim() && !loading ? '#fff' : T.text3, cursor: input.trim() && !loading ? 'pointer' : 'not-allowed', fontSize: 13, fontWeight: 600, display: 'flex', alignItems: 'center', gap: 5 }}>
-              Send {Ic(Send, 13)}
+              style={{ padding: '12px 20px', borderRadius: 12, border: 'none', background: input.trim() && !loading ? `linear-gradient(135deg, ${T.mint}, ${T.emerald})` : T.surface3, color: input.trim() && !loading ? '#fff' : T.text3, cursor: input.trim() && !loading ? 'pointer' : 'not-allowed', fontSize: 13, fontWeight: 600, display: 'flex', alignItems: 'center', gap: 6 }}>
+              Send {Ic(Send, 14)}
             </button>
           </div>
         </div>
       </div>
 
-      {/* Upload modal */}
+      {/* Upload modal - FIXED: visible overlay */}
       {showUpload && (
-        <div style={{ position: 'fixed', inset: 0, zIndex: 300, display: 'flex', alignItems: 'center', justifyContent: 'center', background: 'rgba(14,61,39,0.1)', backdropFilter: 'blur(8px)' }} onClick={e => { if (e.target === e.currentTarget) setShowUpload(false); }}>
-          <div style={{ width: '100%', maxWidth: 440, margin: '0 24px', borderRadius: 18, background: T.surface, border: `1px solid ${T.border}`, animation: 'slide-up .3s ease' }}>
-            <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', padding: '16px 20px', borderBottom: `1px solid ${T.border}` }}>
-              <h3 style={{ fontSize: 15, fontWeight: 600 }}>Upload Notes</h3>
-              <button onClick={() => setShowUpload(false)} style={{ background: 'none', border: 'none', cursor: 'pointer' }}>{Ic(X, 16, T.text3)}</button>
+        <div style={{ position: 'fixed', inset: 0, zIndex: 300, display: 'flex', alignItems: 'center', justifyContent: 'center', background: 'rgba(0,0,0,0.35)', backdropFilter: 'blur(6px)' }} onClick={e => { if (e.target === e.currentTarget) setShowUpload(false); }}>
+          <div style={{ width: '100%', maxWidth: 460, margin: '0 24px', borderRadius: 20, background: '#FFFFFF', border: `1px solid ${T.border}`, boxShadow: '0 24px 64px rgba(0,0,0,0.12)', animation: 'slide-up .3s ease' }}>
+            <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', padding: '20px 24px', borderBottom: `1px solid ${T.border}` }}>
+              <div style={{ display: 'flex', alignItems: 'center', gap: 10 }}>
+                <div style={{ width: 36, height: 36, borderRadius: 10, background: T.mintSoft, display: 'flex', alignItems: 'center', justifyContent: 'center' }}>{Ic(Upload, 18, T.mint)}</div>
+                <h3 style={{ fontSize: 16, fontWeight: 600, color: T.text }}>Upload Notes</h3>
+              </div>
+              <button onClick={() => setShowUpload(false)} style={{ width: 32, height: 32, borderRadius: 8, background: T.surface2, border: 'none', cursor: 'pointer', display: 'flex', alignItems: 'center', justifyContent: 'center' }}>{Ic(X, 16, T.text3)}</button>
             </div>
-            <div style={{ padding: 20 }}>
+            <div style={{ padding: 24 }}>
               <div onDragOver={e => { e.preventDefault(); setDragOver(true); }} onDragLeave={() => setDragOver(false)} onDrop={e => { e.preventDefault(); setDragOver(false); if (e.dataTransfer.files[0]) handleFile(e.dataTransfer.files[0]); setShowUpload(false); }}
                 onClick={() => { const f = document.createElement('input'); f.type = 'file'; f.accept = '.pdf,.txt,.docx'; f.onchange = e => { if (e.target.files[0]) { handleFile(e.target.files[0]); setShowUpload(false); } }; f.click(); }}
-                style={{ padding: '36px 20px', borderRadius: 12, background: dragOver ? T.indigoSoft : T.surface2, border: `1.5px dashed ${dragOver ? T.indigo : T.borderLight}`, textAlign: 'center', cursor: 'pointer', transition: 'all .2s' }}>
-                {Ic(Upload, 28, dragOver ? T.indigo : T.text3)}
-                <p style={{ fontSize: 13, fontWeight: 500, marginTop: 12, color: dragOver ? T.indigo : T.text }}>Drop file or click to upload</p>
-                <p style={{ fontSize: 11, color: T.text3, marginTop: 4 }}>PDF, TXT, DOCX</p>
+                style={{ padding: '44px 24px', borderRadius: 16, background: dragOver ? T.mintSoft : T.bg2, border: `2px dashed ${dragOver ? T.mint : T.borderLight}`, textAlign: 'center', cursor: 'pointer', transition: 'all .2s' }}>
+                <div style={{ width: 52, height: 52, borderRadius: 16, background: dragOver ? T.mintGlow : T.mintSoft, display: 'flex', alignItems: 'center', justifyContent: 'center', margin: '0 auto 16px' }}>{Ic(Upload, 24, dragOver ? T.mint : T.text3)}</div>
+                <p style={{ fontSize: 14, fontWeight: 600, color: dragOver ? T.mint : T.text, marginBottom: 4 }}>{dragOver ? 'Drop your file!' : 'Drag & drop or click to upload'}</p>
+                <p style={{ fontSize: 12, color: T.text3 }}>Supports PDF, TXT, DOCX files</p>
               </div>
             </div>
           </div>
