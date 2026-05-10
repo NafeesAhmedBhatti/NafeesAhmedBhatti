@@ -940,21 +940,21 @@ export default function App() {
   return (
     <div style={{ height: '100vh', display: 'flex', background: T.bg, overflow: 'hidden' }}>
       {/* Sidebar */}
-      <aside style={{ width: collapsed ? 68 : 232, background: T.sidebar, borderRight: `1px solid ${T.border}`, display: 'flex', flexDirection: 'column', flexShrink: 0, transition: 'width .25s cubic-bezier(.4,0,.2,1)' }}>
+      <aside style={{ width: collapsed ? 72 : 260, background: T.sidebar, display: 'flex', flexDirection: 'column', flexShrink: 0, transition: 'width .25s cubic-bezier(.4,0,.2,1)' }}>
         {/* Logo */}
-        <div style={{ height: 64, display: 'flex', alignItems: 'center', gap: 10, padding: '0 16px', borderBottom: '1px solid rgba(255,255,255,0.15)', flexShrink: 0 }}>
-          <div style={{ width: 32, height: 32, borderRadius: 10, background: 'rgba(255,255,255,0.2)', display: 'flex', alignItems: 'center', justifyContent: 'center', flexShrink: 0 }}>{Ic(Brain, 15, '#fff')}</div>
-          {!collapsed && <span style={{ fontWeight: 700, fontSize: 15, letterSpacing: '-0.5px', whiteSpace: 'nowrap', color: '#fff' }}>SmartStudy<span style={{ color: 'rgba(255,255,255,0.7)', fontWeight: 400 }}> AI</span></span>}
+        <div style={{ height: 68, display: 'flex', alignItems: 'center', gap: 12, padding: '0 18px', borderBottom: '1px solid rgba(255,255,255,0.15)', flexShrink: 0 }}>
+          <div style={{ width: 38, height: 38, borderRadius: 12, background: 'rgba(255,255,255,0.2)', display: 'flex', alignItems: 'center', justifyContent: 'center', flexShrink: 0 }}>{Ic(Brain, 18, '#fff')}</div>
+          {!collapsed && <span style={{ fontWeight: 700, fontSize: 16, letterSpacing: '-0.5px', whiteSpace: 'nowrap', color: '#fff' }}>SmartStudy<span style={{ color: 'rgba(255,255,255,0.7)', fontWeight: 400 }}> AI</span></span>}
         </div>
 
         {/* Nav items */}
-        <div style={{ flex: 1, padding: '8px 8px', overflowY: 'auto' }}>
+        <div style={{ flex: 1, padding: '12px 10px', overflowY: 'auto' }}>
           {SIDEBAR_ITEMS.map(item => {
             const active = page === item.id;
             return (
               <button key={item.id} onClick={() => setPage(item.id)}
-                style={{ width: '100%', padding: collapsed ? '10px 0' : '9px 12px', borderRadius: 10, fontSize: 12, fontWeight: active ? 600 : 400, background: active ? 'rgba(255,255,255,0.22)' : 'transparent', color: '#fff', border: active ? '1px solid rgba(255,255,255,0.25)' : '1px solid transparent', cursor: 'pointer', display: 'flex', alignItems: 'center', gap: 10, marginBottom: 2, justifyContent: collapsed ? 'center' : 'flex-start', transition: 'all .15s' }}>
-                {Ic(item.icon, 17, '#fff')}
+                style={{ width: '100%', padding: collapsed ? '12px 0' : '11px 14px', borderRadius: 12, fontSize: 13.5, fontWeight: active ? 600 : 400, background: active ? 'rgba(255,255,255,0.22)' : 'transparent', color: '#fff', border: active ? '1px solid rgba(255,255,255,0.25)' : '1px solid transparent', cursor: 'pointer', display: 'flex', alignItems: 'center', gap: 12, marginBottom: 4, justifyContent: collapsed ? 'center' : 'flex-start', transition: 'all .15s' }}>
+                {Ic(item.icon, 20, '#fff')}
                 {!collapsed && <span style={{ whiteSpace: 'nowrap' }}>{item.label}</span>}
               </button>
             );
@@ -962,14 +962,14 @@ export default function App() {
         </div>
 
         {/* Bottom */}
-        <div style={{ padding: 8, borderTop: '1px solid rgba(255,255,255,0.15)', flexShrink: 0 }}>
+        <div style={{ padding: 10, borderTop: '1px solid rgba(255,255,255,0.15)', flexShrink: 0 }}>
           <button onClick={() => { setCollapsed(!collapsed); }}
-            style={{ width: '100%', padding: collapsed ? '10px 0' : '9px 12px', borderRadius: 10, fontSize: 12, background: 'transparent', color: 'rgba(255,255,255,0.7)', border: 'none', cursor: 'pointer', display: 'flex', alignItems: 'center', gap: 10, justifyContent: collapsed ? 'center' : 'flex-start' }}>
-            {Ic(ChevronLeft, 16, 'rgba(255,255,255,0.7)')} {!collapsed && 'Collapse'}
+            style={{ width: '100%', padding: collapsed ? '12px 0' : '11px 14px', borderRadius: 12, fontSize: 13, background: 'transparent', color: 'rgba(255,255,255,0.7)', border: 'none', cursor: 'pointer', display: 'flex', alignItems: 'center', gap: 12, justifyContent: collapsed ? 'center' : 'flex-start' }}>
+            {Ic(ChevronLeft, 18, 'rgba(255,255,255,0.7)')} {!collapsed && 'Collapse'}
           </button>
           <button onClick={() => setPage('landing')}
-            style={{ width: '100%', padding: collapsed ? '10px 0' : '9px 12px', borderRadius: 10, fontSize: 12, background: 'transparent', color: 'rgba(255,255,255,0.85)', border: 'none', cursor: 'pointer', display: 'flex', alignItems: 'center', gap: 10, justifyContent: collapsed ? 'center' : 'flex-start' }}>
-            {Ic(LogOut, 16, 'rgba(255,255,255,0.85)')} {!collapsed && 'Logout'}
+            style={{ width: '100%', padding: collapsed ? '12px 0' : '11px 14px', borderRadius: 12, fontSize: 13, background: 'transparent', color: 'rgba(255,255,255,0.85)', border: 'none', cursor: 'pointer', display: 'flex', alignItems: 'center', gap: 12, justifyContent: collapsed ? 'center' : 'flex-start' }}>
+            {Ic(LogOut, 18, 'rgba(255,255,255,0.85)')} {!collapsed && 'Logout'}
           </button>
         </div>
       </aside>
