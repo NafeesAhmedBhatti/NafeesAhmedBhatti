@@ -147,11 +147,27 @@ const SIDEBAR_ITEMS = [
 async function extractText(file) {
   if (file.type === 'text/plain' || file.name.endsWith('.txt')) return await file.text();
   if (file.type === 'application/pdf' || file.name.endsWith('.pdf')) {
-    const P = await import('pdfjs-dist'); P.GlobalWorkerOptions.workerSrc = '';
-    const ab = await file.arrayBuffer(); const pdf = await P.getDocument({ data: ab }).promise;
-    let t = ''; for (let i = 1; i <= pdf.numPages; i++) { const p = await pdf.getPage(i); const ct = await p.getTextContent(); t += ct.items.map(x => x.str).join(' ') + '\n'; } return t.trim();
+    const pdfjsLib = await import('pdfjs-dist');
+    // Disable worker — process in main thread (fine for study notes)
+    pdfjsLib.GlobalWorkerOptions.workerSrc = new URL(
+      'pdfjs-dist/build/pdf.worker.min.mjs',
+      import.meta.url
+    ).toString();
+    const ab = await file.arrayBuffer();
+    const pdf = await pdfjsLib.getDocument({ data: new Uint8Array(ab) }).promise;
+    let t = '';
+    for (let i = 1; i <= pdf.numPages; i++) {
+      const p = await pdf.getPage(i);
+      const ct = await p.getTextContent();
+      t += ct.items.map(x => x.str).join(' ') + '\n';
+    }
+    return t.trim();
   }
-  if (file.name.endsWith('.docx')) { const ab = await file.arrayBuffer(); const r = await mammoth.extractRawText({ arrayBuffer: ab }); return r.value; }
+  if (file.name.endsWith('.docx')) {
+    const ab = await file.arrayBuffer();
+    const r = await mammoth.extractRawText({ arrayBuffer: ab });
+    return r.value;
+  }
   return await file.text();
 }
 
