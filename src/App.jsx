@@ -16,29 +16,32 @@ import {
 import { AreaChart, Area, BarChart, Bar, PieChart, Pie, Cell, ResponsiveContainer, XAxis, YAxis, Tooltip, CartesianGrid } from 'recharts';
 
 // ═══════════════════════════════════════════════════════════════
-// THEME — Cyber Sakura
+// THEME — Mint Green + Sky Blue (Light)
 // ═══════════════════════════════════════════════════════════════
 const T = {
-  bg: '#0D0A14', bg2: '#120E1C', bg3: '#171224',
-  sidebar: '#0F0B18', sidebarHover: '#14102A',
-  surface: '#18132A', surface2: '#1E1836', surface3: '#2A2348',
-  border: '#2A2348', borderLight: '#342C56',
-  text: '#F5D0FE', text2: '#B07CC8', text3: '#6B4380',
-  sakura: '#D946EF', sakuraHover: '#C026D3', sakuraSoft: 'rgba(217,70,239,0.10)', sakuraGlow: 'rgba(217,70,239,0.25)',
-  lavender: '#F0ABFC', lavenderSoft: 'rgba(240,171,252,0.10)',
-  rose: '#F472B6', roseSoft: 'rgba(244,114,182,0.10)',
-  fuchsia: '#E879F9', fuchsiaSoft: 'rgba(232,121,249,0.10)',
-  cyan: '#67E8F9', cyanSoft: 'rgba(103,232,249,0.10)',
-  violet: '#A78BFA', violetSoft: 'rgba(167,139,250,0.10)',
-  amber: '#FCD34D', amberSoft: 'rgba(252,211,77,0.10)',
-  green: '#4ADE80', greenSoft: 'rgba(74,222,128,0.10)',
-  red: '#FB7185', redSoft: 'rgba(251,113,133,0.10)',
-  // Legacy aliases for compatibility
-  indigo: '#D946EF', indigoHover: '#C026D3', indigoSoft: 'rgba(217,70,239,0.10)', indigoGlow: 'rgba(217,70,239,0.25)',
-  purple: '#A78BFA', purpleSoft: 'rgba(167,139,250,0.10)',
-  orange: '#FCD34D', orangeSoft: 'rgba(252,211,77,0.10)',
-  pink: '#F472B6', pinkSoft: 'rgba(244,114,182,0.10)',
-  blue: '#67E8F9', blueSoft: 'rgba(103,232,249,0.10)',
+  bg: '#ECFEFF', bg2: '#F0FDFA', bg3: '#F7FDFB',
+  sidebar: '#F0FDFA', sidebarHover: '#E6FAF7',
+  surface: '#FFFFFF', surface2: '#F5FFFE', surface3: '#E8F8F5',
+  border: '#C8F0E8', borderLight: '#D5F2EC',
+  text: '#164E63', text2: '#3D7A8A', text3: '#7CB5C2',
+  sky: '#7DD3FC', skyHover: '#38BDF8', skySoft: 'rgba(125,211,252,0.12)', skyGlow: 'rgba(125,211,252,0.30)',
+  mint: '#99F6E4', mintSoft: 'rgba(153,246,228,0.15)',
+  teal: '#2DD4BF', tealSoft: 'rgba(45,212,191,0.12)',
+  emerald: '#34D399', emeraldSoft: 'rgba(52,211,153,0.12)',
+  skyblue: '#38BDF8', skyblueSoft: 'rgba(56,189,248,0.12)',
+  amber: '#FBBF24', amberSoft: 'rgba(251,191,36,0.12)',
+  rose: '#FB7185', roseSoft: 'rgba(251,113,133,0.12)',
+  violet: '#A78BFA', violetSoft: 'rgba(167,139,250,0.12)',
+  deep: '#164E63',
+  // Aliases for compatibility
+  indigo: '#0EA5E9', indigoHover: '#0284C7', indigoSoft: 'rgba(14,165,233,0.10)', indigoGlow: 'rgba(14,165,233,0.25)',
+  purple: '#8B5CF6', purpleSoft: 'rgba(139,92,246,0.10)',
+  cyan: '#06B6D4', cyanSoft: 'rgba(6,182,212,0.10)',
+  green: '#10B981', greenSoft: 'rgba(16,185,129,0.12)',
+  orange: '#F59E0B', orangeSoft: 'rgba(245,158,11,0.12)',
+  red: '#EF4444', redSoft: 'rgba(239,68,68,0.10)',
+  pink: '#EC4899', pinkSoft: 'rgba(236,72,153,0.10)',
+  blue: '#0EA5E9', blueSoft: 'rgba(14,165,233,0.10)',
 };
 
 const Ic = (Icon, s = 18, color = T.text2) => <Icon size={s} color={color} strokeWidth={1.7} />;
@@ -56,11 +59,11 @@ const CSS = `
 @keyframes flipIn{from{transform:rotateY(90deg);opacity:0}to{transform:rotateY(0);opacity:1}}
 @keyframes progress{from{width:0}to{width:var(--pw)}}
 @keyframes fade-in{from{opacity:0}to{opacity:1}}
-.shimmer{background:linear-gradient(90deg,transparent,rgba(217,70,239,0.06),transparent);background-size:200% 100%;animation:shimmer 2s infinite}
+.shimmer{background:linear-gradient(90deg,transparent,rgba(14,165,233,0.06),transparent);background-size:200% 100%;animation:shimmer 2s infinite}
 .glow-btn{position:relative;overflow:hidden;transition:all .3s cubic-bezier(.4,0,.2,1)}
-.glow-btn::before{content:'';position:absolute;inset:-2px;border-radius:inherit;background:linear-gradient(135deg,#D946EF,#A78BFA,#67E8F9);opacity:0;transition:opacity .3s;z-index:-1;filter:blur(8px)}
+.glow-btn::before{content:'';position:absolute;inset:-2px;border-radius:inherit;background:linear-gradient(135deg,#0EA5E9,#2DD4BF,#99F6E4);opacity:0;transition:opacity .3s;z-index:-1;filter:blur(8px)}
 .glow-btn:hover::before{opacity:.6}
-.glow-btn:hover{transform:translateY(-1px);box-shadow:0 8px 32px rgba(217,70,239,0.3),0 0 60px rgba(167,139,250,0.1)}
+.glow-btn:hover{transform:translateY(-1px);box-shadow:0 8px 32px rgba(14,165,233,0.2),0 0 60px rgba(45,212,191,0.1)}
 .glow-btn:active{transform:translateY(0) scale(.98)}
 `;
 
@@ -262,13 +265,13 @@ function Landing({ onEnter }) {
     <div style={{ minHeight: '100vh', background: T.bg }}>
       {/* Background orbs */}
       <div style={{ position: 'fixed', inset: 0, pointerEvents: 'none', overflow: 'hidden' }}>
-        <div style={{ position: 'absolute', top: '-20%', left: '15%', width: 600, height: 600, borderRadius: '50%', background: `radial-gradient(circle, rgba(217,70,239,0.08), transparent 70%)`, filter: 'blur(80px)' }} />
-        <div style={{ position: 'absolute', bottom: '-15%', right: '10%', width: 500, height: 500, borderRadius: '50%', background: `radial-gradient(circle, rgba(167,139,250,0.06), transparent 70%)`, filter: 'blur(80px)' }} />
-        <div style={{ position: 'absolute', top: '40%', left: '60%', width: 300, height: 300, borderRadius: '50%', background: `radial-gradient(circle, rgba(103,232,249,0.05), transparent 70%)`, filter: 'blur(60px)' }} />
+        <div style={{ position: 'absolute', top: '-20%', left: '15%', width: 600, height: 600, borderRadius: '50%', background: `radial-gradient(circle, rgba(14,165,233,0.06), transparent 70%)`, filter: 'blur(80px)' }} />
+        <div style={{ position: 'absolute', bottom: '-15%', right: '10%', width: 500, height: 500, borderRadius: '50%', background: `radial-gradient(circle, rgba(45,212,191,0.06), transparent 70%)`, filter: 'blur(80px)' }} />
+        <div style={{ position: 'absolute', top: '40%', left: '60%', width: 300, height: 300, borderRadius: '50%', background: `radial-gradient(circle, rgba(153,246,228,0.06), transparent 70%)`, filter: 'blur(60px)' }} />
       </div>
 
       {/* Navbar */}
-      <nav style={{ position: 'fixed', top: 0, left: 0, right: 0, zIndex: 100, height: 64, display: 'flex', alignItems: 'center', justifyContent: 'space-between', padding: '0 40px', background: 'rgba(13,10,20,0.8)', backdropFilter: 'blur(20px) saturate(1.5)', borderBottom: `1px solid ${T.border}` }}>
+      <nav style={{ position: 'fixed', top: 0, left: 0, right: 0, zIndex: 100, height: 64, display: 'flex', alignItems: 'center', justifyContent: 'space-between', padding: '0 40px', background: 'rgba(236,254,255,0.85)', backdropFilter: 'blur(20px) saturate(1.5)', borderBottom: `1px solid ${T.border}` }}>
         <div style={{ display: 'flex', alignItems: 'center', gap: 10 }}>
           <div style={{ width: 32, height: 32, borderRadius: 10, background: `linear-gradient(135deg, ${T.indigo}, ${T.cyan})`, display: 'flex', alignItems: 'center', justifyContent: 'center', boxShadow: `0 0 24px ${T.indigo}40` }}>{Ic(Brain, 16, '#fff')}</div>
           <span style={{ fontWeight: 700, fontSize: 16, letterSpacing: '-0.5px' }}>SmartStudy<span style={{ color: T.text3, fontWeight: 400 }}> AI</span></span>
@@ -376,7 +379,7 @@ function DashboardPage({ setPage }) {
               <CartesianGrid strokeDasharray="3 3" stroke={T.border} />
               <XAxis dataKey="day" tick={{ fontSize: 11, fill: T.text3 }} axisLine={false} tickLine={false} />
               <YAxis tick={{ fontSize: 11, fill: T.text3 }} axisLine={false} tickLine={false} />
-              <Tooltip contentStyle={{ background: T.surface2, border: `1px solid ${T.border}`, borderRadius: 8, fontSize: 12 }} labelStyle={{ color: T.text }} />
+              <Tooltip contentStyle={{ background: T.surface2, border: `1px solid ${T.border}`, borderRadius: 8, fontSize: 12, color: T.text }} labelStyle={{ color: T.text }} />
               <Area type="monotone" dataKey="hours" stroke={T.indigo} strokeWidth={2} fill="url(#gIndigo)" />
             </AreaChart>
           </ResponsiveContainer>
@@ -390,7 +393,7 @@ function DashboardPage({ setPage }) {
               <Pie data={pieData} cx="50%" cy="50%" innerRadius={40} outerRadius={60} paddingAngle={3} dataKey="value" stroke="none">
                 {pieData.map((d, i) => <Cell key={i} fill={d.color} />)}
               </Pie>
-              <Tooltip contentStyle={{ background: T.surface2, border: `1px solid ${T.border}`, borderRadius: 8, fontSize: 12 }} />
+              <Tooltip contentStyle={{ background: T.surface2, border: `1px solid ${T.border}`, borderRadius: 8, fontSize: 12, color: T.text }} />
             </PieChart>
           </ResponsiveContainer>
           <div style={{ display: 'flex', flexWrap: 'wrap', gap: 8, marginTop: 8 }}>
@@ -565,7 +568,7 @@ function AIChatPage() {
 
       {/* Upload modal */}
       {showUpload && (
-        <div style={{ position: 'fixed', inset: 0, zIndex: 300, display: 'flex', alignItems: 'center', justifyContent: 'center', background: 'rgba(0,0,0,0.7)', backdropFilter: 'blur(8px)' }} onClick={e => { if (e.target === e.currentTarget) setShowUpload(false); }}>
+        <div style={{ position: 'fixed', inset: 0, zIndex: 300, display: 'flex', alignItems: 'center', justifyContent: 'center', background: 'rgba(22,78,99,0.15)', backdropFilter: 'blur(8px)' }} onClick={e => { if (e.target === e.currentTarget) setShowUpload(false); }}>
           <div style={{ width: '100%', maxWidth: 440, margin: '0 24px', borderRadius: 18, background: T.surface, border: `1px solid ${T.border}`, animation: 'slide-up .3s ease' }}>
             <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', padding: '16px 20px', borderBottom: `1px solid ${T.border}` }}>
               <h3 style={{ fontSize: 15, fontWeight: 600 }}>Upload Notes</h3>
@@ -796,7 +799,7 @@ function AnalyticsPage() {
               <CartesianGrid strokeDasharray="3 3" stroke={T.border} />
               <XAxis dataKey="m" tick={{ fontSize: 11, fill: T.text3 }} axisLine={false} tickLine={false} />
               <YAxis tick={{ fontSize: 11, fill: T.text3 }} axisLine={false} tickLine={false} />
-              <Tooltip contentStyle={{ background: T.surface2, border: `1px solid ${T.border}`, borderRadius: 8, fontSize: 12 }} />
+              <Tooltip contentStyle={{ background: T.surface2, border: `1px solid ${T.border}`, borderRadius: 8, fontSize: 12, color: T.text }} />
               <Bar dataKey="v" fill={T.indigo} radius={[4, 4, 0, 0]} />
             </BarChart>
           </ResponsiveContainer>
@@ -808,7 +811,7 @@ function AnalyticsPage() {
               <CartesianGrid strokeDasharray="3 3" stroke={T.border} />
               <XAxis type="number" tick={{ fontSize: 10, fill: T.text3 }} axisLine={false} tickLine={false} domain={[0, 100]} />
               <YAxis type="category" dataKey="name" tick={{ fontSize: 11, fill: T.text2 }} axisLine={false} tickLine={false} width={60} />
-              <Tooltip contentStyle={{ background: T.surface2, border: `1px solid ${T.border}`, borderRadius: 8, fontSize: 12 }} />
+              <Tooltip contentStyle={{ background: T.surface2, border: `1px solid ${T.border}`, borderRadius: 8, fontSize: 12, color: T.text }} />
               <Bar dataKey="score" radius={[0, 4, 4, 0]}>
                 {subjectData.map((d, i) => <Cell key={i} fill={d.color} />)}
               </Bar>
@@ -975,7 +978,7 @@ export default function App() {
       {/* Main content */}
       <div style={{ flex: 1, display: 'flex', flexDirection: 'column', minWidth: 0 }}>
         {/* Top bar */}
-        <header style={{ height: 64, display: 'flex', alignItems: 'center', justifyContent: 'space-between', padding: '0 24px', borderBottom: `1px solid ${T.border}`, flexShrink: 0, background: 'rgba(13,10,20,0.6)', backdropFilter: 'blur(12px)' }}>
+        <header style={{ height: 64, display: 'flex', alignItems: 'center', justifyContent: 'space-between', padding: '0 24px', borderBottom: `1px solid ${T.border}`, flexShrink: 0, background: 'rgba(236,254,255,0.7)', backdropFilter: 'blur(12px)' }}>
           <div style={{ display: 'flex', alignItems: 'center', gap: 12 }}>
             <h2 style={{ fontSize: 16, fontWeight: 700, letterSpacing: '-0.3px' }}>{SIDEBAR_ITEMS.find(i => i.id === page)?.label || 'Dashboard'}</h2>
           </div>
@@ -993,7 +996,7 @@ export default function App() {
                 <div style={{ position: 'absolute', top: 6, right: 6, width: 7, height: 7, borderRadius: '50%', background: T.red, border: `2px solid ${T.bg}` }} />
               </button>
               {notifOpen && (
-                <div style={{ position: 'absolute', top: 44, right: 0, width: 280, borderRadius: 14, background: T.surface, border: `1px solid ${T.border}`, boxShadow: '0 16px 48px rgba(0,0,0,0.5)', zIndex: 100, animation: 'slide-up .2s ease' }}>
+                <div style={{ position: 'absolute', top: 44, right: 0, width: 280, borderRadius: 14, background: T.surface, border: `1px solid ${T.border}`, boxShadow: '0 16px 48px rgba(0,0,0,0.08)', zIndex: 100, animation: 'slide-up .2s ease' }}>
                   <div style={{ padding: '14px 16px', borderBottom: `1px solid ${T.border}`, display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
                     <span style={{ fontSize: 13, fontWeight: 600 }}>Notifications</span>
                     <span style={{ fontSize: 10, color: T.indigo, cursor: 'pointer' }}>Mark all read</span>
@@ -1017,7 +1020,7 @@ export default function App() {
                 S
               </button>
               {profileOpen && (
-                <div style={{ position: 'absolute', top: 44, right: 0, width: 200, borderRadius: 14, background: T.surface, border: `1px solid ${T.border}`, boxShadow: '0 16px 48px rgba(0,0,0,0.5)', zIndex: 100, animation: 'slide-up .2s ease' }}>
+                <div style={{ position: 'absolute', top: 44, right: 0, width: 200, borderRadius: 14, background: T.surface, border: `1px solid ${T.border}`, boxShadow: '0 16px 48px rgba(0,0,0,0.08)', zIndex: 100, animation: 'slide-up .2s ease' }}>
                   <div style={{ padding: '14px 16px', borderBottom: `1px solid ${T.border}` }}>
                     <p style={{ fontSize: 13, fontWeight: 600 }}>Student</p>
                     <p style={{ fontSize: 11, color: T.text3 }}>student@university.edu</p>
