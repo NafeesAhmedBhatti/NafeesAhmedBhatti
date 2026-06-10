@@ -16,12 +16,14 @@ AI Engineer with hands-on experience building production-ready web applications,
 
 Currently working at **Drytis**, developing AI-driven software solutions, LLM workflows and intelligent automation systems for international clients.
 
-Previously worked as a **Software Trainer & Developer**, training 300+ students in Full Stack Development and Machine Learning while delivering real-world software projects.
+AI Engineer @ Drytis
+Building AI-powered applications using LLMs, RAG, Prompt Engineering, React.js, Node.js, MongoDB, and Python.
+Focused on Generative AI, Machine Learning, and Full-Stack Development.
 
 ### Highlights
 
 - 1+ Years Professional Experience
-- 300+ Students Trained
+- 500+ Students Trained
 - 6+ Production Projects Delivered
 - AI, LLM & Full Stack Development
 - B.Tech in Computer Science Engineering
