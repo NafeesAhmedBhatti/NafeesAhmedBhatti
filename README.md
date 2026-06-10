@@ -1,7 +1,7 @@
 <h1 align="center">Nafees Ahmed Bhatti</h1>
 
 <p align="center">
-AI Engineer @ Drytis • Full Stack Developer • Machine Learning Enthusiast
+AI Engineer @ Drytis • AI Engineer • Full Stack Developer 
 </p>
 
 <p align="center">
