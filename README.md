@@ -558,17 +558,6 @@ Use your brain. Verify your sources. Don't blame the AI for your exam results.
 
 ---
 
-## 👨‍💻 Author
-
-**Nafees Ahmed Bhatti**
-
-*A developer who believes studying should feel less like a chore and more like leveling up.*
-
-- 🌐 Portfolio: [Coming Soon]
-- 💼 LinkedIn: [Coming Soon]
-- 🐙 GitHub: [github.com/nafeesahmedbhatti](https://github.com/nafeesahmedbhatti)
-- ✉️ Email: nafeesahmedbhatti@gmail.com
-
 ---
 
 <div align="center">
