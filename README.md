@@ -56,42 +56,7 @@ You can create a free account in seconds (it's stored locally in your browser), 
 
 ## 📸 Screenshots
 
-Because let's be real — no one reads a README without seeing what the thing actually looks like.
-
-<table>
-<tr>
-<td align="center"><b>Landing Page</b></td>
-<td align="center"><b>Dashboard</b></td>
-</tr>
-<tr>
-<td><img src="readme-screenshot-landing.png" width="480" alt="Landing Page" /></td>
-<td><img src="readme-screenshot-dashboard.png" width="480" alt="Dashboard" /></td>
-</tr>
-<tr>
-<td align="center"><b>AI Chat (Streaming)</b></td>
-<td align="center"><b>Study Tools</b></td>
-</tr>
-<tr>
-<td><img src="readme-screenshot-ai-chat.png" width="480" alt="AI Chat" /></td>
-<td><img src="readme-screenshot-study-tools.png" width="480" alt="Study Tools" /></td>
-</tr>
-<tr>
-<td align="center"><b>Analytics</b></td>
-<td align="center"><b>Dark Mode Dashboard</b></td>
-</tr>
-<tr>
-<td><img src="readme-screenshot-analytics.png" width="480" alt="Analytics" /></td>
-<td><img src="readme-screenshot-dark-dashboard.png" width="480" alt="Dark Mode Dashboard" /></td>
-</tr>
-<tr>
-<td align="center"><b>Settings (Dark Mode)</b></td>
-<td align="center"><b>Mobile Responsive</b></td>
-</tr>
-<tr>
-<td><img src="readme-screenshot-dark-mode.png" width="480" alt="Dark Mode Settings" /></td>
-<td><img src="readme-screenshot-mobile.png" width="480" alt="Mobile View" /></td>
-</tr>
-</table>
+Check out the live demo to see the app in action — **[Live Demo](https://ai-study-assistant-t9ku2h.drytis.dev/)**
 
 ---
 

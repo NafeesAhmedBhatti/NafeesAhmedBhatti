@@ -5,6 +5,14 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>SmartStudy AI — Intelligent Study Platform</title>
   <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🎓</text></svg>" />
+  <link rel="manifest" href="/manifest.json" />
+  <meta name="theme-color" content="#32C971" />
+  <meta name="mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-status-bar-style" content="default" />
+  <meta name="apple-mobile-web-app-title" content="SmartStudy AI" />
+  <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate" />
+  <meta http-equiv="Pragma" content="no-cache" />
+  <meta http-equiv="Expires" content="0" />
   <style>
     @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap');
     *{margin:0;padding:0;box-sizing:border-box}
@@ -20,5 +28,25 @@
 <body>
   <div id="root"></div>
   <script type="module" src="/src/main.jsx"></script>
+  <script>
+    // Immediately kill any old service worker and clear all caches
+    if ('serviceWorker' in navigator) {
+      navigator.serviceWorker.getRegistrations().then(rs => rs.forEach(r => r.unregister()));
+    }
+    if ('caches' in window) {
+      caches.keys().then(ks => ks.forEach(k => caches.delete(k)));
+    }
+  </script>
+  <script>
+    // Fallback: if app still blank after 4s, hard reload
+    setTimeout(() => {
+      const root = document.getElementById('root');
+      if (root && !root.children.length) {
+        if ('caches' in window) caches.keys().then(ks => ks.forEach(k => caches.delete(k)));
+        if ('serviceWorker' in navigator) navigator.serviceWorker.getRegistrations().then(rs => rs.forEach(r => r.unregister()));
+        setTimeout(() => location.reload(true), 300);
+      }
+    }, 4000);
+  </script>
 </body>
 </html>
