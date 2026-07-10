@@ -2,23 +2,15 @@
 
 <img src="https://raw.githubusercontent.com/0xAbdulKhalid/0xAbdulKhalid/main/hero.gif" width="600" alt="Hero Banner" />
 
-</div>
+<br/><br/>
+
+[![Typing SVG](https://readme-typing-svg.demolab.com?font=Fira+Code&weight=600&size=22&pause=1000&color=00FF94&center=true&vCenter=true&random=false&width=435&lines=Hi+there+%F0%9F%91%8B+I'm+Nafees;AI+Engineer+%F0%9F%A4%96;Full+Stack+Developer+%F0%9F%92%BB;RAG+%26+LLM+Specialist+%F0%9F%A7%A0)](https://git.io/typing-svg)
 
 <br/>
 
-<div align="center">
-
-[![Typing SVG](https://readme-typing-svg.demolab.com?font=Fira+Code&weight=600&size=22&pause=1000&color=00D9A3&center=true&vCenter=true&random=false&width=435&lines=Hi+there+%F0%9F%91%8B+I'm+Nafees;AI+Engineer+%F0%9F%A4%96;Full+Stack+Developer+%F0%9F%92%BB;RAG+%26+LLM+Specialist+%F0%9F%A7%A0)](https://git.io/typing-svg)
-
-</div>
-
-<br/>
-
-<div align="center">
-
-<img src="https://komarev.com/ghpvc/?username=NafeesAhmedBhatti&label=Visitors&color=00D9A3&style=flat-square&labelColor=0D1117" alt="Visitors" />
-<img src="https://img.shields.io/github/followers/NafeesAhmedBhatti?label=Followers&color=00D9A3&style=flat-square&labelColor=0D1117" alt="Followers" />
-<img src="https://img.shields.io/badge/Status-Available%20for%20Work-00D9A3?style=flat-square&labelColor=0D1117" alt="Status" />
+<img src="https://komarev.com/ghpvc/?username=NafeesAhmedBhatti&label=Visitors&color=00FF94&style=flat-square&labelColor=000000" alt="Visitors" />
+<img src="https://img.shields.io/github/followers/NafeesAhmedBhatti?label=Followers&color=00FF94&style=flat-square&labelColor=000000" alt="Followers" />
+<img src="https://img.shields.io/badge/Status-Available%20for%20Work-00FF94?style=flat-square&labelColor=000000" alt="Status" />
 
 </div>
 
@@ -61,7 +53,7 @@
 
 <img src="https://img.shields.io/badge/OpenAI-412991?style=for-the-badge&logo=openai&logoColor=white" />
 <img src="https://img.shields.io/badge/LangChain-1C3C3C?style=for-the-badge&logo=langchain&logoColor=white" />
-<img src="https://img.shields.io/badge/RAG-Systems-00D9A3?style=for-the-badge&logo=algolia&logoColor=white" />
+<img src="https://img.shields.io/badge/RAG-Systems-00FF94?style=for-the-badge&logo=algolia&logoColor=white&labelColor=000000" />
 <img src="https://img.shields.io/badge/Prompt_Engineering-FF6F00?style=for-the-badge&logo=huggingface&logoColor=white" />
 <img src="https://img.shields.io/badge/TensorFlow-FF6F00?style=for-the-badge&logo=tensorflow&logoColor=white" />
 <img src="https://img.shields.io/badge/Scikit_Learn-F7931E?style=for-the-badge&logo=scikit-learn&logoColor=white" />
@@ -76,12 +68,12 @@
 
 <div align="center">
 
-<img height="170" src="https://github-readme-stats.vercel.app/api?username=NafeesAhmedBhatti&show_icons=true&theme=dark&hide_border=true&bg_color=0D1117&title_color=00D9A3&icon_color=00D9A3&text_color=C9D1D9" alt="GitHub Stats" />
-<img height="170" src="https://github-readme-stats.vercel.app/api/top-langs/?username=NafeesAhmedBhatti&layout=compact&theme=dark&hide_border=true&bg_color=0D1117&title_color=00D9A3&text_color=C9D1D9" alt="Top Languages" />
+<img height="170" src="https://github-readme-stats.vercel.app/api?username=NafeesAhmedBhatti&show_icons=true&theme=dark&hide_border=true&bg_color=000000&title_color=00FF94&icon_color=00FF94&text_color=FFFFFF" alt="GitHub Stats" />
+<img height="170" src="https://github-readme-stats.vercel.app/api/top-langs/?username=NafeesAhmedBhatti&layout=compact&theme=dark&hide_border=true&bg_color=000000&title_color=00FF94&text_color=FFFFFF" alt="Top Languages" />
 
 <br/><br/>
 
-<img src="https://github-readme-streak-stats.herokuapp.com/?user=NafeesAhmedBhatti&theme=dark&hide_border=true&background=0D1117&ring=00D9A3&fire=FF6B35&currLabel=00D9A3&sideLabels=C9D1D9&dates=C9D1D9" alt="Streak Stats" />
+<img src="https://github-readme-streak-stats.herokuapp.com/?user=NafeesAhmedBhatti&theme=dark&hide_border=true&background=000000&ring=00FF94&fire=FF6B35&currLabel=00FF94&sideLabels=FFFFFF&dates=FFFFFF&currNum=00FF94" alt="Streak Stats" />
 
 </div>
 
@@ -93,7 +85,7 @@
 
 <div align="center">
 
-<img src="https://github-readme-activity-graph.vercel.app/graph?username=NafeesAhmedBhatti&theme=react-dark&hide_border=true&bg_color=0D1117&color=00D9A3&line=00D9A3&point=FFFFFF&area=true&area_color=00D9A340" width="95%" alt="Activity Graph" />
+<img src="https://github-readme-activity-graph.vercel.app/graph?username=NafeesAhmedBhatti&theme=dark&hide_border=true&bg_color=000000&color=00FF94&line=00FF94&point=FFFFFF&area=true&area_color=00FF9430" width="95%" alt="Activity Graph" />
 
 </div>
 
@@ -133,11 +125,11 @@
 
 <div align="center">
 
-<a href="https://github.com/NafeesAhmedBhatti/AI-Health-Analyzer"><img align="top" src="https://github-readme-stats.vercel.app/api/pin/?username=NafeesAhmedBhatti&repo=AI-Health-Analyzer&theme=dark&hide_border=true&bg_color=0D1117&title_color=00D9A3&icon_color=00D9A3" /></a>
-<a href="https://github.com/NafeesAhmedBhatti/SmartStudy-AI"><img align="top" src="https://github-readme-stats.vercel.app/api/pin/?username=NafeesAhmedBhatti&repo=SmartStudy-AI&theme=dark&hide_border=true&bg_color=0D1117&title_color=00D9A3&icon_color=00D9A3" /></a>
+<a href="https://github.com/NafeesAhmedBhatti/AI-Health-Analyzer"><img align="top" src="https://github-readme-stats.vercel.app/api/pin/?username=NafeesAhmedBhatti&repo=AI-Health-Analyzer&theme=dark&hide_border=true&bg_color=000000&title_color=00FF94&icon_color=00FF94&description_color=FFFFFF" /></a>
+<a href="https://github.com/NafeesAhmedBhatti/SmartStudy-AI"><img align="top" src="https://github-readme-stats.vercel.app/api/pin/?username=NafeesAhmedBhatti&repo=SmartStudy-AI&theme=dark&hide_border=true&bg_color=000000&title_color=00FF94&icon_color=00FF94&description_color=FFFFFF" /></a>
 <br/>
-<a href="https://github.com/NafeesAhmedBhatti/rag-chatbot"><img align="top" src="https://github-readme-stats.vercel.app/api/pin/?username=NafeesAhmedBhatti&repo=rag-chatbot&theme=dark&hide_border=true&bg_color=0D1117&title_color=00D9A3&icon_color=00D9A3" /></a>
-<a href="https://github.com/NafeesAhmedBhatti/rag-document-qna-system"><img align="top" src="https://github-readme-stats.vercel.app/api/pin/?username=NafeesAhmedBhatti&repo=rag-document-qna-system&theme=dark&hide_border=true&bg_color=0D1117&title_color=00D9A3&icon_color=00D9A3" /></a>
+<a href="https://github.com/NafeesAhmedBhatti/rag-chatbot"><img align="top" src="https://github-readme-stats.vercel.app/api/pin/?username=NafeesAhmedBhatti&repo=rag-chatbot&theme=dark&hide_border=true&bg_color=000000&title_color=00FF94&icon_color=00FF94&description_color=FFFFFF" /></a>
+<a href="https://github.com/NafeesAhmedBhatti/rag-document-qna-system"><img align="top" src="https://github-readme-stats.vercel.app/api/pin/?username=NafeesAhmedBhatti&repo=rag-document-qna-system&theme=dark&hide_border=true&bg_color=000000&title_color=00FF94&icon_color=00FF94&description_color=FFFFFF" /></a>
 
 </div>
 
@@ -210,7 +202,7 @@
 
 <div align="center">
 
-[![Quote](https://readme-typing-svg.demolab.com?font=Fira+Code&weight=400&size=14&pause=2000&color=00D9A377&center=true&vCenter=true&random=false&width=400&lines=%22Building+practical+AI+products+that+solve+real-world+problems.%22)](https://git.io/typing-svg)
+[![Quote](https://readme-typing-svg.demolab.com?font=Fira+Code&weight=400&size=14&pause=2000&color=00FF9477&center=true&vCenter=true&random=false&width=400&lines=%22Building+practical+AI+products+that+solve+real-world+problems.%22)](https://git.io/typing-svg)
 
 <br/>
 
