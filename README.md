@@ -1,211 +1,163 @@
 <div align="center">
 
-<img src="https://raw.githubusercontent.com/0xAbdulKhalid/0xAbdulKhalid/main/hero.gif" width="600" alt="Hero Banner" />
+# Hi 👋, I'm Nafees Ahmed Bhatti
 
-<br/><br/>
+### AI Engineer | Generative AI Developer | Full Stack Developer
 
-[![Typing SVG](https://readme-typing-svg.demolab.com?font=Fira+Code&weight=600&size=22&pause=1000&color=00FF94&center=true&vCenter=true&random=false&width=435&lines=Hi+there+%F0%9F%91%8B+I'm+Nafees;AI+Engineer+%F0%9F%A4%96;Full+Stack+Developer+%F0%9F%92%BB;RAG+%26+LLM+Specialist+%F0%9F%A7%A0)](https://git.io/typing-svg)
-
-<br/>
-
-<img src="https://komarev.com/ghpvc/?username=NafeesAhmedBhatti&label=Visitors&color=00FF94&style=flat-square&labelColor=000000" alt="Visitors" />
-<img src="https://img.shields.io/github/followers/NafeesAhmedBhatti?label=Followers&color=00FF94&style=flat-square&labelColor=000000" alt="Followers" />
-<img src="https://img.shields.io/badge/Status-Available%20for%20Work-00FF94?style=flat-square&labelColor=000000" alt="Status" />
+<img src="https://readme-typing-svg.demolab.com?font=Poppins&weight=600&size=24&duration=3500&pause=1000&color=0EA5E9&center=true&vCenter=true&width=900&lines=AI+Engineer;Generative+AI+Developer;Full+Stack+Developer;LLM+Integration+%7C+Prompt+Engineering;Retrieval-Augmented+Generation+(RAG);Building+AI-Powered+Applications" />
 
 </div>
 
-<br/>
+---
+
+# 💫 Professional Overview
+
+AI Engineer with experience in building AI-powered applications using **Generative AI**, **Large Language Models (LLMs)**, **LLM Integration**, **Prompt Engineering**, and **Retrieval-Augmented Generation (RAG)**.
+
+Experienced in end-to-end **Full Stack Development** using the **MERN Stack**, developing **REST APIs**, and building Machine Learning solutions with **Python**, **TensorFlow**, **Keras**, and **Scikit-Learn**.
+
+Strong understanding of software engineering principles, Agile development, and scalable application architecture with a passion for solving real-world problems using Artificial Intelligence.
 
 ---
 
-### 👨‍💻 About Me
+# 💻 Tech Stack
 
-```text
-🏢 Currently: AI Engineer @ Drytis
-🎓 Education: B.Tech in Computer Science
-📍 Location: Jammu & Kashmir, India
-🧠 Focus: Generative AI · RAG Systems · LLMs
-🚀 Experience: 1+ Year Building AI Products
-📚 Students: 500+ Trained in Full Stack & AI/ML
-📫 Email: nafees6005@gmail.com
-⚡ Fun fact: I talk to AI more than humans 😄
-```
+### Programming Languages
 
-<br/>
+<p>
+<img src="https://skillicons.dev/icons?i=python,javascript,typescript"/>
+</p>
+
+### Frontend
+
+<p>
+<img src="https://skillicons.dev/icons?i=react,nextjs,html,css"/>
+</p>
+
+### Backend
+
+<p>
+<img src="https://skillicons.dev/icons?i=nodejs,express,django"/>
+</p>
+
+### Databases
+
+<p>
+<img src="https://skillicons.dev/icons?i=mongodb,mysql"/>
+</p>
+
+### AI & Generative AI
+
+<p>
+
+<img src="https://img.shields.io/badge/Generative%20AI-181717?style=flat-square"/>
+
+<img src="https://img.shields.io/badge/Large%20Language%20Models%20(LLMs)-181717?style=flat-square"/>
+
+<img src="https://img.shields.io/badge/LLM%20Integration-181717?style=flat-square"/>
+
+<img src="https://img.shields.io/badge/Prompt%20Engineering-181717?style=flat-square"/>
+
+<img src="https://img.shields.io/badge/Retrieval-Augmented%20Generation%20(RAG)-181717?style=flat-square"/>
+
+<img src="https://img.shields.io/badge/Machine%20Learning-181717?style=flat-square"/>
+
+<img src="https://img.shields.io/badge/Deep%20Learning-181717?style=flat-square"/>
+
+<img src="https://img.shields.io/badge/Model%20Training-181717?style=flat-square"/>
+
+<img src="https://img.shields.io/badge/Model%20Evaluation-181717?style=flat-square"/>
+
+<img src="https://img.shields.io/badge/TensorFlow-FF6F00?style=flat-square&logo=tensorflow&logoColor=white"/>
+
+<img src="https://img.shields.io/badge/Keras-D00000?style=flat-square&logo=keras&logoColor=white"/>
+
+<img src="https://img.shields.io/badge/Scikit--Learn-F7931E?style=flat-square&logo=scikitlearn&logoColor=white"/>
+
+<img src="https://img.shields.io/badge/Pandas-150458?style=flat-square&logo=pandas&logoColor=white"/>
+
+<img src="https://img.shields.io/badge/NumPy-013243?style=flat-square&logo=numpy&logoColor=white"/>
+
+<img src="https://img.shields.io/badge/OpenCV-5C3EE8?style=flat-square&logo=opencv&logoColor=white"/>
+
+<img src="https://img.shields.io/badge/Data%20Preprocessing-181717?style=flat-square"/>
+
+</p>
+
+### Software Engineering
+
+<p>
+
+<img src="https://img.shields.io/badge/Full%20Stack%20Development-181717?style=flat-square"/>
+
+<img src="https://img.shields.io/badge/REST%20APIs-181717?style=flat-square"/>
+
+<img src="https://img.shields.io/badge/API%20Development-181717?style=flat-square"/>
+
+<img src="https://img.shields.io/badge/Database%20Design-181717?style=flat-square"/>
+
+<img src="https://img.shields.io/badge/Authentication-181717?style=flat-square"/>
+
+<img src="https://img.shields.io/badge/Debugging-181717?style=flat-square"/>
+
+<img src="https://img.shields.io/badge/Agile%20Development-181717?style=flat-square"/>
+
+<img src="https://img.shields.io/badge/SDLC-181717?style=flat-square"/>
+
+</p>
+
+### Tools
+
+<p>
+<img src="https://skillicons.dev/icons?i=git,github,postman,vscode"/>
+</p>
 
 ---
 
-### 🧰 Tech Stack
+# 🚀 Featured Projects
+### 🤖 AI Study Assistant
+
+AI-powered educational platform that integrates **LLM APIs** to generate personalized quizzes, topic summaries, and adaptive learning plans.
+
+**Tech Stack:** React.js • Node.js • Express.js • MongoDB • LLM APIs • Prompt Engineering
+
+---
+
+### 🩺 AI Health Analyzer
+
+Machine Learning-powered health prediction application developed using **Python**, **Scikit-Learn**, **Pandas**, and **NumPy**. Implemented a complete ML pipeline including data preprocessing, feature engineering, model training, evaluation, and a React.js frontend.
+
+**Tech Stack:** Python • Scikit-Learn • React.js • Pandas • NumPy • Machine Learning
+
+---
+
+### 🐅 Animal Endangered Species Detection System
+
+Computer Vision and Machine Learning project trained on **6,400+ images**, achieving approximately **90% classification accuracy** for endangered animal species detection.
+
+**Tech Stack:** Python • Machine Learning • Scikit-Learn • Pandas • OpenCV
+
+---
+
+# 📊 GitHub Statistics
 
 <div align="center">
 
-<img src="https://skillicons.dev/icons?i=python,typescript,javascript,react,nextjs,nodejs,express&perline=7&theme=dark" alt="Languages & Frameworks" />
-<br/><br/>
-<img src="https://skillicons.dev/icons?i=mongodb,mysql,prisma,django,fastapi&perline=5&theme=dark" alt="Database & Backend" />
-<br/><br/>
-<img src="https://skillicons.dev/icons?i=tensorflow,opencv,git,github,docker,postman,vscode&perline=7&theme=dark" alt="AI/ML & Tools" />
+<img height="170" src="https://github-readme-stats.vercel.app/api?username=YOUR_GITHUB_USERNAME&show_icons=true&theme=github_dark&hide_border=true&rank_icon=github"/>
+
+<img height="170" src="https://github-readme-streak-stats.herokuapp.com/?user=YOUR_GITHUB_USERNAME&theme=github-dark-blue&hide_border=true"/>
 
 </div>
-
-<br/>
-
-<div align="center">
-
-<img src="https://img.shields.io/badge/OpenAI-412991?style=for-the-badge&logo=openai&logoColor=white" />
-<img src="https://img.shields.io/badge/LangChain-1C3C3C?style=for-the-badge&logo=langchain&logoColor=white" />
-<img src="https://img.shields.io/badge/RAG-Systems-00FF94?style=for-the-badge&logo=algolia&logoColor=white&labelColor=000000" />
-<img src="https://img.shields.io/badge/Prompt_Engineering-FF6F00?style=for-the-badge&logo=huggingface&logoColor=white" />
-<img src="https://img.shields.io/badge/TensorFlow-FF6F00?style=for-the-badge&logo=tensorflow&logoColor=white" />
-<img src="https://img.shields.io/badge/Scikit_Learn-F7931E?style=for-the-badge&logo=scikit-learn&logoColor=white" />
-
-</div>
-
-<br/>
-
----
-
-### 📊 GitHub Stats
-
-<div align="center">
-
-<img height="170" src="https://github-readme-stats.vercel.app/api?username=NafeesAhmedBhatti&show_icons=true&theme=dark&hide_border=true&bg_color=000000&title_color=00FF94&icon_color=00FF94&text_color=FFFFFF" alt="GitHub Stats" />
-<img height="170" src="https://github-readme-stats.vercel.app/api/top-langs/?username=NafeesAhmedBhatti&layout=compact&theme=dark&hide_border=true&bg_color=000000&title_color=00FF94&text_color=FFFFFF" alt="Top Languages" />
-
-<br/><br/>
-
-<img src="https://github-readme-streak-stats.herokuapp.com/?user=NafeesAhmedBhatti&theme=dark&hide_border=true&background=000000&ring=00FF94&fire=FF6B35&currLabel=00FF94&sideLabels=FFFFFF&dates=FFFFFF&currNum=00FF94" alt="Streak Stats" />
-
-</div>
-
-<br/>
-
----
-
-### 📈 Contribution Graph
-
-<div align="center">
-
-<img src="https://github-readme-activity-graph.vercel.app/graph?username=NafeesAhmedBhatti&theme=dark&hide_border=true&bg_color=000000&color=00FF94&line=00FF94&point=FFFFFF&area=true&area_color=00FF9430" width="95%" alt="Activity Graph" />
-
-</div>
-
-<br/>
-
----
-
-### 🐍 Contribution Snake
-
-<div align="center">
-
-<picture>
-  <source media="(prefers-color-scheme: dark)" srcset="https://raw.githubusercontent.com/NafeesAhmedBhatti/NafeesAhmedBhatti/output/github-snake-dark.svg" />
-  <source media="(prefers-color-scheme: light)" srcset="https://raw.githubusercontent.com/NafeesAhmedBhatti/NafeesAhmedBhatti/output/github-snake.svg" />
-  <img alt="github-snake" src="https://raw.githubusercontent.com/NafeesAhmedBhatti/NafeesAhmedBhatti/output/github-snake-dark.svg" />
-</picture>
-
-</div>
-
-<br/>
-
----
-
-### 🏆 GitHub Trophies
-
-<div align="center">
-
-<img src="https://github-profile-trophy.vercel.app/?username=NafeesAhmedBhatti&theme=darkhub&no-frame=true&no-bg=true&column=7&margin-w=10&margin-h=10" alt="Trophies" />
-
-</div>
-
-<br/>
-
----
-
-### 🚀 Featured Projects
-
-<div align="center">
-
-<a href="https://github.com/NafeesAhmedBhatti/AI-Health-Analyzer"><img align="top" src="https://github-readme-stats.vercel.app/api/pin/?username=NafeesAhmedBhatti&repo=AI-Health-Analyzer&theme=dark&hide_border=true&bg_color=000000&title_color=00FF94&icon_color=00FF94&description_color=FFFFFF" /></a>
-<a href="https://github.com/NafeesAhmedBhatti/SmartStudy-AI"><img align="top" src="https://github-readme-stats.vercel.app/api/pin/?username=NafeesAhmedBhatti&repo=SmartStudy-AI&theme=dark&hide_border=true&bg_color=000000&title_color=00FF94&icon_color=00FF94&description_color=FFFFFF" /></a>
-<br/>
-<a href="https://github.com/NafeesAhmedBhatti/rag-chatbot"><img align="top" src="https://github-readme-stats.vercel.app/api/pin/?username=NafeesAhmedBhatti&repo=rag-chatbot&theme=dark&hide_border=true&bg_color=000000&title_color=00FF94&icon_color=00FF94&description_color=FFFFFF" /></a>
-<a href="https://github.com/NafeesAhmedBhatti/rag-document-qna-system"><img align="top" src="https://github-readme-stats.vercel.app/api/pin/?username=NafeesAhmedBhatti&repo=rag-document-qna-system&theme=dark&hide_border=true&bg_color=000000&title_color=00FF94&icon_color=00FF94&description_color=FFFFFF" /></a>
-
-</div>
-
-<br/>
-
----
-
-### 💼 Experience
-
-<div align="center">
-
-<table>
-<tr>
-<td width="50%" valign="top">
-
-**🤖 AI Engineer** · `Drytis`
-<br/><sub>Mar 2026 — Present</sub>
-
-- Building AI-powered software solutions
-- LLM workflows & automation systems
-- International client collaboration
-- Production-ready AI applications
-
-</td>
-<td width="50%" valign="top">
-
-**👨‍🏫 Trainer & Developer** · `Desire Infotech`
-<br/><sub>Nov 2024 — Oct 2025</sub>
-
-- Trained 500+ students in Full Stack & AI/ML
-- Designed project-based learning programs
-- Developed MERN and Python applications
-- Code reviews & technical mentoring
-
-</td>
-</tr>
-</table>
-
-</div>
-
-<br/>
-
----
-
-### 🌱 Currently Learning
-
-```text
-🧩 LangChain Agents    📊 Vector Databases
-🔀 Multimodal AI       🎭 Fine-tuning LLMs
-🏗️ Agentic Workflows   ☁️ Cloud AI Deployment
-```
-
-<br/>
-
----
-
-### 📬 Connect With Me
-
-<div align="center">
-
-<a href="https://github.com/NafeesAhmedBhatti"><img src="https://img.shields.io/badge/GitHub-181717?style=for-the-badge&logo=github&logoColor=white" /></a>
-<a href="https://www.linkedin.com/in/nafees-ahmed-bhatti"><img src="https://img.shields.io/badge/LinkedIn-0A66C2?style=for-the-badge&logo=linkedin&logoColor=white" /></a>
-<a href="mailto:nafees6005@gmail.com"><img src="https://img.shields.io/badge/Email-D14836?style=for-the-badge&logo=gmail&logoColor=white" /></a>
-
-</div>
-
-<br/>
 
 ---
 
 <div align="center">
 
-[![Quote](https://readme-typing-svg.demolab.com?font=Fira+Code&weight=400&size=14&pause=2000&color=00FF9477&center=true&vCenter=true&random=false&width=400&lines=%22Building+practical+AI+products+that+solve+real-world+problems.%22)](https://git.io/typing-svg)
+### Thanks for visiting my profile! 👋
 
-<br/>
-
-<sub>✨ Made with 💚 by <a href="https://github.com/NafeesAhmedBhatti">Nafees Ahmed Bhatti</a></sub>
+*Building AI-powered applications with Generative AI, Large Language Models (LLMs), Full Stack Development, and Machine Learning.*
 
 </div>
+
+
+
